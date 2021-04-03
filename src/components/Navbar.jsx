@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
 const Navbar = () => {
 
-    const store = useContext(AppContext);
+    const {isEnglish} = useContext(AppContext);
 
     return(
         <Wrapper>

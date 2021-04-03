@@ -1,20 +1,27 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
+import {AppContext} from "../../context/AppContext";
+
+import { language } from '../../language';
 
 const SearchBox = styled.input`
-  background-color: transparent; 
+  background-color: #CEF1F1;
   border: none;
-  border-bottom: 2px solid #dcdde1;
   outline: none;
   height: 40px;
   font-size: 18px;
-  width: 15vw;
-  padding-left: 15px;
+  width: 20vw;
   transition: .3s;
+  text-align: center;
   color: black;
+  border-radius: 13px;
+  
+  &::placeholder{
+    color: #636e72;
+  }
   
   &:hover{
-    background-color: #f5f6fa;
+    background-color: #97E9E9;
   }
 `
 
@@ -24,7 +31,9 @@ const Submit = styled.button`
 
 const SearchTool = () => {
 
+    const { isEnglish } = useContext(AppContext);
     const [searchValue, setSearchValue] = useState("");
+    const [ isInputAvailable, setIsInputAvailable ] = useState(false);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -36,7 +45,6 @@ const SearchTool = () => {
         setSearchValue(e.target.value);
     }
 
-
     return(
         <div>
             <form onSubmit={handleSubmit}>
@@ -44,7 +52,7 @@ const SearchTool = () => {
                     type="text"
                     onChange={handleInputChange}
                     value={searchValue}
-                    placeholder="Search tool..."
+                    placeholder={isEnglish ? language.english.searchInput : language.polish.searchInput }
                 />
             </form>
             <Submit type="submit"/>
