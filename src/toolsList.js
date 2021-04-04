@@ -1,6 +1,8 @@
 import figma from './images/logos/figma.svg';
 import adobexd from './images/logos/adobeXd.svg';
 import sketch from './images/logos/sketch.svg';
+import fontAwesome from './images/logos/fontAwesome.svg';
+import icons8 from './images/logos/icons8.svg';
 
 export const toolsList = [
     {
@@ -11,7 +13,8 @@ export const toolsList = [
                 link: 'https://www.figma.com/',
                 img: `${figma}`,
                 price: true,
-                descriptionPL: 'Program do projektowania interfejsów i grafik',
+                descriptionPL: 'Zaawansowany program do projektowania interfejsów i grafik',
+                descriptionENG: 'Advanced program for creating application layouts',
                 id: '9b68973a-c0f0-4e30-8f98-364bfaeafd89',
                 tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'figma']
             },
@@ -20,7 +23,8 @@ export const toolsList = [
                 link: 'https://www.adobe.com/pl/products/xd.html',
                 img: `${adobexd}`,
                 price: true,
-                descriptionPL: 'Program do projektowania interfejsów i grafik',
+                descriptionPL: 'Zaawansowany program do projektowania interfejsów i grafik',
+                descriptionENG: 'Advanced program for creating application layouts',
                 id: '1dba07a6-0aa8-4d14-8425-ca9110cc068b',
                 tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'adobexd', 'xd']
             },
@@ -29,7 +33,8 @@ export const toolsList = [
                 link: 'https://www.sketch.com/',
                 img: `${sketch}`,
                 price: false,
-                descriptionPL: 'Program do projektowania interfejsów i grafik',
+                descriptionPL: 'Zaawansowany program do projektowania interfejsów i grafik',
+                descriptionENG: 'Advanced program for creating application layouts',
                 id: '1dba07a6-0aa8-4d14-8425-ca9110cc068b',
                 tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'adobexd', 'xd']
             }
@@ -41,16 +46,18 @@ export const toolsList = [
             {
                 name: "icons8",
                 link: 'https://icons8.com/icons',
-                img: './images/icons8',
-                description: 'Ikonki',
+                img: `${icons8}`,
+                descriptionPL: 'Polski',
+                descriptionENG: 'English',
                 id: '993ba6b4-f915-480e-ba53-381071ecfae2',
                 tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'icons8', 'icons',]
             },
             {
                 name: "Font Awesome",
                 link: 'https://fontawesome.com/',
-                img: './images/fontawesome',
-                description: 'Ikonki',
+                img: `${fontAwesome}`,
+                descriptionPL: 'Polski',
+                descriptionENG: 'English',
                 id: '90d4bec8-6a42-473f-adc4-d5960159179a',
                 tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'icons8', 'icons',]
             }

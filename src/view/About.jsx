@@ -4,14 +4,14 @@ const About = () => {
     return(
         <div>
             <h1>O projekcie</h1>
-            <p>Icons</p>
+            <p>Wszystkie ikonki zostały pobrane ze strony icons8.com</p>
             <ul>
-                <li>
-                    <a target="_blank" href="undefined/icons/set/great-britain--v1">Great Britain icon</a> icon by <a target="_blank" href="">Icons8</a>
-                </li>
-                <li>
-                    <a target="_blank" href="undefined/icons/set/poland">Poland icon</a> icon by <a target="_blank" href="">Icons8</a>
-                </li>
+            {/*    https://icons8.com/icon/59826/link - link
+                    https://icons8.com/icon/SeQmYQ-YS_S1/poland
+                    https://icons8.com/icon/122839/great-britain
+
+
+            */}
             </ul>
         </div>
     );

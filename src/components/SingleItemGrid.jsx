@@ -1,14 +1,16 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 
 import link from '../images/link.png';
+import {AppContext} from "../context/AppContext";
 
 const ListItem = styled.li`
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 3fr 10fr 20fr 6fr 10fr 5fr;
   background-color: #F5F7F5;
   list-style: none;
   padding: 15px 10px;
+  max-height: 65px;
   
   &:nth-of-type(even){
     background-color: #EFF2EF;
@@ -34,23 +36,30 @@ const Description = styled.p`
 `
 
 const Price = styled.p`
+  font-family: 'Lexend', sans-serif;
+  font-weight: 600;
   color: ${props => props.price ? '#00C52B' : '#DBB802'};
   padding: 15px 20px;
-  border-left: 2px solid #B9B9B9;
-  border-right: 2px solid #B9B9B9;
-  font-weight: bold;
-  
+  border-left: 2px solid #E0E0E0;
+  border-right: 2px solid #E0E0E0;
+  text-align: center;
 `
 
 const GetIt = styled.button`
+  font-family: 'Lexend', sans-serif;
   margin-left: 20px;
   font-size: 22px;
-  font-weight: bolder;
+  font-weight: 500;
   color: black;
   background-color: transparent;
   border: none;
   outline: none;
   line-height: 50px;
+  transition: .3s;
+  
+  &:hover{
+    transform: scale(1.2);
+  }
 `
 
 const Icon = styled.div`
@@ -66,27 +75,29 @@ const Icon = styled.div`
 const ItemName = styled.p`
   font-size: 24px;
   font-weight: 600;
-  margin-left: 30px;
+  margin-left: 40px;
   padding: 10px 25px 10px 0;
-  border-right: 2px solid #B9B9B9;
+  border-right: 2px solid #E0E0E0;
 `
-
-const LinkImage = styled.div`
-  
-`
-
-
 
 const SingleItem = ({item}) => {
+
+    const { isEnglish } = useContext(AppContext);
+
+    const OpenLink = myUrl => {
+        console.log(myUrl);
+        let newWindow = window.open(myUrl, '_blank');
+        newWindow.focus();
+    }
 
     return(
       <ListItem>
           <Logo path={item.img} />
           <ItemName>{item.name}</ItemName>
-          <Description>{item.descriptionPL}</Description>
+          <Description>{isEnglish ? item.descriptionENG : item.descriptionPL}</Description>
           <Price price={item.price}>{item.price ? "Free" : "Paid"}</Price>
-          <GetIt>
-              Get it here
+          <GetIt onClick={() => OpenLink(item.link)}>
+              {isEnglish ? 'Get it here' : 'Przejdź' }
               <Icon/>
           </GetIt>
       </ListItem>

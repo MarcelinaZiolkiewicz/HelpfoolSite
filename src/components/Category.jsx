@@ -1,12 +1,13 @@
 import React from "react";
-import SingleItem from "./SingleItem";
 import styled from "styled-components";
+import SingleItemGrid from "./SingleItemGrid";
 
 
 const CategoryText = styled.p`
-  font-size: 30px;
+  font-size: 32px;
   font-weight: bold;
   text-transform: uppercase;
+  padding-bottom: 20px;
 `
 
 const Wrapper = styled.div`
@@ -17,7 +18,7 @@ const Category = ({item}) => {
 
 
     const things = item.tools.map(thing => (
-          <SingleItem item={thing}/>
+          <SingleItemGrid item={thing}/>
         )
     );
 
