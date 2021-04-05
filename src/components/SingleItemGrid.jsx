@@ -4,9 +4,9 @@ import styled from "styled-components";
 import link from '../images/link.png';
 import {AppContext} from "../context/AppContext";
 
-const ListItem = styled.li`
+const ListItem = styled.div`
   display: grid;
-  grid-template-columns: 3fr 10fr 20fr 6fr 10fr 5fr;
+  grid-template-columns: 3fr auto 20fr 6fr 10fr 5fr;
   background-color: #F5F7F5;
   list-style: none;
   padding: 15px 10px;
@@ -27,7 +27,7 @@ const Logo = styled.div`
 `
 
 const Description = styled.p`
-  margin: 0 20px;
+  margin: 0 auto;
   height: 50px;
   text-align: left;
   color: black;
@@ -47,7 +47,6 @@ const Price = styled.p`
 
 const GetIt = styled.button`
   font-family: 'Lexend', sans-serif;
-  margin-left: 20px;
   font-size: 22px;
   font-weight: 500;
   color: black;
@@ -90,12 +89,19 @@ const SingleItem = ({item}) => {
         newWindow.focus();
     }
 
+    const ItemPrice = (item) => {
+        if (item){
+            return isEnglish ? "Free" : "Darmowy";
+        }
+        return isEnglish ? "Paid" : "Płatny";
+    }
+
     return(
       <ListItem>
-          <Logo path={item.img} />
+          <Logo path={window.location.origin + item.img} />
           <ItemName>{item.name}</ItemName>
           <Description>{isEnglish ? item.descriptionENG : item.descriptionPL}</Description>
-          <Price price={item.price}>{item.price ? "Free" : "Paid"}</Price>
+          <Price price={item.price}>{ItemPrice(item.price)}</Price>
           <GetIt onClick={() => OpenLink(item.link)}>
               {isEnglish ? 'Get it here' : 'Przejdź' }
               <Icon/>

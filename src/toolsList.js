@@ -1,17 +1,12 @@
-import figma from './images/logos/figma.svg';
-import adobexd from './images/logos/adobeXd.svg';
-import sketch from './images/logos/sketch.svg';
-import fontAwesome from './images/logos/fontAwesome.svg';
-import icons8 from './images/logos/icons8.svg';
-
 export const toolsList = [
     {
-        type: "design",
+        typeENG: "design",
+        typePL: "Projektowanie",
         tools: [
             {
                 name: "Figma",
                 link: 'https://www.figma.com/',
-                img: `${figma}`,
+                img: '/logos/figma.svg',
                 price: true,
                 descriptionPL: 'Zaawansowany program do projektowania interfejsów i grafik',
                 descriptionENG: 'Advanced program for creating application layouts',
@@ -21,7 +16,7 @@ export const toolsList = [
             {
                 name: "Adobe XD",
                 link: 'https://www.adobe.com/pl/products/xd.html',
-                img: `${adobexd}`,
+                img: '/logos/adobeXd.svg',
                 price: true,
                 descriptionPL: 'Zaawansowany program do projektowania interfejsów i grafik',
                 descriptionENG: 'Advanced program for creating application layouts',
@@ -31,7 +26,7 @@ export const toolsList = [
             {
                 name: "Sketch",
                 link: 'https://www.sketch.com/',
-                img: `${sketch}`,
+                img: '/logos/sketch.svg',
                 price: false,
                 descriptionPL: 'Zaawansowany program do projektowania interfejsów i grafik',
                 descriptionENG: 'Advanced program for creating application layouts',
@@ -41,12 +36,14 @@ export const toolsList = [
         ]
     },
     {
-        type: "icons",
+        typeENG: "icons",
+        typePL: "Ikony",
         tools: [
             {
                 name: "icons8",
                 link: 'https://icons8.com/icons',
-                img: `${icons8}`,
+                img: '/logos/icons8.svg',
+                price: true,
                 descriptionPL: 'Polski',
                 descriptionENG: 'English',
                 id: '993ba6b4-f915-480e-ba53-381071ecfae2',
@@ -55,12 +52,13 @@ export const toolsList = [
             {
                 name: "Font Awesome",
                 link: 'https://fontawesome.com/',
-                img: `${fontAwesome}`,
+                img: '/logos/fontAwesome.svg',
+                price: true,
                 descriptionPL: 'Polski',
                 descriptionENG: 'English',
                 id: '90d4bec8-6a42-473f-adc4-d5960159179a',
                 tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'icons8', 'icons',]
-            }
+            },
         ]
     }
 ];

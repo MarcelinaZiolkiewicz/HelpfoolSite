@@ -1,27 +1,10 @@
 import React, {useContext} from "react";
-import { SuperLink, Icon } from "../../styled/styled";
+import { SuperLink, ButtonElement, Icon, MenuWrapper } from "../../styled/styled";
 import styled from "styled-components";
 
 import {language} from '../../language';
 import {AppContext} from "../../context/AppContext";
 
-const MenuWrapper = styled.ul`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-right: 15px;
-`
-
-const ButtonElement = styled.li`
-  list-style: none;
-  padding: 10px 20px;
-  font-size: 20px;
-  transition: .3s;
-  
-  &:hover{
-    transform: scale(1.2);
-  }
-`
 
 const MenuButtons = () => {
 

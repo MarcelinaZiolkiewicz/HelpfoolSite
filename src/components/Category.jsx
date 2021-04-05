@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import SingleItemGrid from "./SingleItemGrid";
+import {AppContext} from "../context/AppContext";
 
 
 const CategoryText = styled.p`
@@ -16,6 +17,7 @@ const Wrapper = styled.div`
 
 const Category = ({item}) => {
 
+    const { isEnglish } = useContext(AppContext);
 
     const things = item.tools.map(thing => (
           <SingleItemGrid item={thing}/>
@@ -24,7 +26,7 @@ const Category = ({item}) => {
 
     return(
         <Wrapper>
-            <CategoryText>{item.type}</CategoryText>
+            <CategoryText>{isEnglish ? item.typeENG : item.typePL}</CategoryText>
             <ul>
                 {things}
             </ul>

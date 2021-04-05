@@ -5,7 +5,7 @@ export const AppContext = createContext();
 const AppProvider = props => {
 
     const [darkTheme, setDarkTheme] = useState(true);
-    const [isEnglish, setIsEnglish] = useState(false);
+    const [isEnglish, setIsEnglish] = useState(true);
 
     const handleChangeLanguage = () => {
         setIsEnglish(!isEnglish);

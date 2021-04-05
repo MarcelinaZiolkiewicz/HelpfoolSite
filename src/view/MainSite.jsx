@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import styled from 'styled-components';
 import {AppContext} from "../context/AppContext";
 
-import {language} from "../language";
 import {toolsList} from "../toolsList";
 
 import Category from "../components/Category";
@@ -24,7 +23,6 @@ const MainSite = () => {
 
     return(
         <Wrapper>
-            {/*<CategoryText>{isEnglish ? language.english.designLabel : language.polish.designLabel}</CategoryText>*/}
             {items}
         </Wrapper>
     );

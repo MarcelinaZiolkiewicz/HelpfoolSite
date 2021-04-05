@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  max-height: 90px;
 `
 
 const Navbar = () => {
