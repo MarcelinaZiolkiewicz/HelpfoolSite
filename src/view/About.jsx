@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 
 import styled from "styled-components";
 
-import {ButtonElement, MenuWrapper, Label, InfoText, SmallerLabel, SubpagesWrapper} from "../styled/styled";
+import {ButtonElement, ListWrapper, Label, InfoText, SmallerLabel, SubpagesWrapper} from "../styled/styled";
 import {AppContext} from "../context/AppContext";
 
 import { language } from '../language';
@@ -51,7 +51,7 @@ const About = () => {
                 <SmallerLabel>
                     {isEnglish ? language.english.About.resourceIcons : language.polish.About.resourceIcons}
                 </SmallerLabel>
-                <MenuWrapper>
+                <ListWrapper>
                     <ButtonElement>
                         <Link href="https://icons8.com/icon/59826/link" target="_blank">
                             <Icon link={link}/>
@@ -69,7 +69,7 @@ const About = () => {
                             <Icon link={eng}/>
                         </Link>
                     </ButtonElement>
-                </MenuWrapper>
+                </ListWrapper>
             </Icons>
 
         </SubpagesWrapper>

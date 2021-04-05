@@ -8,6 +8,12 @@ const LogoWrapper = styled.p`
   font-size: 36px;
   padding: 20px ;
   font-weight: bold;
+  text-align: left;
+
+  @media(max-width: 415px){
+    width: 90vw;
+    margin: 0 auto;
+  }
 `
 
 const Logo = () => {

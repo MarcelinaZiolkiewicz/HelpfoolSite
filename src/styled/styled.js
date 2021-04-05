@@ -24,6 +24,24 @@ export const MenuWrapper = styled.ul`
   flex-direction: row;
   align-items: center;
   padding-right: 15px;
+
+  @media(max-width: 415px){
+    display: none;
+    //background-color: white;
+    //z-index: 2;
+    //position: absolute;
+    //flex-direction: column;
+    //left: 25%;
+    //top: 25%;
+    //transform: translate(25%, 25%);
+  }
+`
+
+export const ListWrapper = styled.ul`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 15px;
 `
 
 export const ButtonElement = styled.li`
@@ -47,6 +65,10 @@ export const InfoText = styled.p`
   padding-top: 2vh;
   font-size: 20px;
   width: 50vw;
+
+  @media(max-width: 415px){
+    width: 90vw;
+  }
 `
 
 export const SmallerLabel = styled.p`
@@ -59,4 +81,8 @@ export const SubpagesWrapper = styled.div`
   width: 50vw;
   height: calc(100vh - 20vh);
   margin: 5vh auto 0 auto;
+
+  @media(max-width: 415px){
+    width: 90vw;
+  }
 `

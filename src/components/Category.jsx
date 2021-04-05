@@ -13,6 +13,10 @@ const CategoryText = styled.p`
 
 const Wrapper = styled.div`
   padding: 10px 20px;
+  
+  @media(max-width: 415px){
+    padding: unset;
+  }
 `
 
 const Category = ({item}) => {

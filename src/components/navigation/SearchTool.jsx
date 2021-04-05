@@ -23,6 +23,12 @@ const SearchBox = styled.input`
   &:hover{
     background-color: #97E9E9;
   }
+
+  @media(max-width: 415px){
+    font-size: 16px;
+    width: 75vw;
+    margin: 0 auto;
+  }
 `
 
 const Submit = styled.button`

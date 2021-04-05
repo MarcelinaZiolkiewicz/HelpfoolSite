@@ -15,6 +15,11 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   max-height: 90px;
+  
+  @media(max-width: 415px){
+    flex-direction: column;
+  }
+  
 `
 
 const Navbar = () => {

@@ -10,6 +10,10 @@ const Wrapper = styled.div`
   width: 80vw;
   background-color: #FFFFFF;
   margin: 15vh auto 0 auto;
+  
+  @media(max-width: 415px){
+    width: 100vw;
+  }
 `
 
 const MainSite = () => {
