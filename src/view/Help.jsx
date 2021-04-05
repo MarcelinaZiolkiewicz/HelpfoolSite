@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from "styled-components";
 import { SubpagesWrapper, Label, InfoText } from '../styled/styled';
+
+import {AppContext} from "../context/AppContext";
+import { language } from '../language';
 
 const Link = styled.a`
   display: inline-block;
@@ -24,14 +27,26 @@ const StyledLi = styled.li`
 `
 
 const Help = () => {
+
+    const { isEnglish } = useContext(AppContext);
+
     return(
         <SubpagesWrapper>
-            <Label>Chcę pomóc!</Label>
-            <InfoText>Cały projekt jest otwrto źródłowy więc jeśli coś nie działa, masz pomysła jak coś usprawnić, lub chcesz pomóc w rozwoju to masz otwarte drzwi!</InfoText>
-            <InfoText>Dostępne są tylko 2 języki - Polski i Angielski. Jeśli jesteś w stanie przetłumaczyć traść na jakiś inny to się nie krępuj. </InfoText>
+            <Label>{isEnglish ? language.english.Help.helpLabel : language.polish.Help.helpLabel }</Label>
+            <InfoText>{isEnglish ? language.english.Help.helpWithSite : language.polish.Help.helpWithSite }</InfoText>
+        <InfoText>{isEnglish ? language.english.Help.helpWithTranslation : language.polish.Help.helpWithTranslation } </InfoText>
             <ul>
-                <StyledLi><Link href="https://github.com/MichalZiolkiewicz/HelpfoolSite" target="_blank">Projekt na githubie</Link></StyledLi>
-                <StyledLi><Link href="#" target="_blank">Lista Trello</Link></StyledLi>
+                <StyledLi>
+                    <Link href="https://github.com/MichalZiolkiewicz/HelpfoolSite" target="_blank">
+                        {isEnglish ? language.english.Help.buttonGit : language.polish.Help.buttonGit }
+                    </Link>
+                </StyledLi>
+
+                <StyledLi>
+                    <Link href="#" target="_blank">
+                        {isEnglish ? language.english.Help.buttonTrello : language.polish.Help.buttonTrello }
+                    </Link>
+                </StyledLi>
             </ul>
 
 

@@ -6,7 +6,7 @@ import {AppContext} from "../context/AppContext";
 
 const ListItem = styled.div`
   display: grid;
-  grid-template-columns: 3fr auto 20fr 6fr 10fr 5fr;
+  grid-template-columns: 3fr 10fr 20fr 6fr 10fr 5fr;
   background-color: #F5F7F5;
   list-style: none;
   padding: 15px 10px;

@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
+
 import styled from "styled-components";
+
 import {ButtonElement, MenuWrapper, Label, InfoText, SmallerLabel, SubpagesWrapper} from "../styled/styled";
+import {AppContext} from "../context/AppContext";
+
+import { language } from '../language';
 
 import link from '../images/link.png';
 import pl from '../images/pl.png';
@@ -24,25 +29,27 @@ const Icons = styled.div`
   padding-left: 2vw;
 `
 
-
 const About = () => {
+
+    const { isEnglish } = useContext(AppContext);
+
     return(
         <SubpagesWrapper>
-            <Label>O projekcie</Label>
+            <Label>{isEnglish ? language.english.About.about : language.polish.About.about}</Label>
             <InfoText>
-                Praca programisty nie należy do najłatwiejszych, często wymaga od nas przekopywania się przez tony internetu w poszukiwaniu potrzebnych do prototypowania czy tworzenia aplikacji bibliotek, grafik, ikon, filmów itd.
-                Tak, mnie też to zawsze męczyło, często jak znalazłem jakąś przydatną stronę to w końcu i tak ginęła i musiałem jej szukać na nowo. A gdyby tak nie musieć spędzać tony czasu na szukaniu tego co trzeba?
-                Właśnie dlatego powstało Helpfool, żeby unikać tracenia czasu na szukanie, bo tutaj wszystko jest pod ręką, zawsze.
+                {isEnglish ? language.english.About.aboutMessage : language.polish.About.aboutMessage}
             </InfoText>
 
             <Label>
-                Wykorzystane zasoby
+                {isEnglish ? language.english.About.resourcesLabel : language.polish.About.resourcesLabel}
             </Label>
-            <InfoText>Cała strona jest darmowa i zostały do niej wykorzystane darmowe zasoby które możecie znaleźć pod tymi linkami</InfoText>
+            <InfoText>
+                {isEnglish ? language.english.About.resourcesText : language.polish.About.resourcesText}
+            </InfoText>
 
             <Icons>
                 <SmallerLabel>
-                    Ikony
+                    {isEnglish ? language.english.About.resourceIcons : language.polish.About.resourceIcons}
                 </SmallerLabel>
                 <MenuWrapper>
                     <ButtonElement>
