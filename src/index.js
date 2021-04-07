@@ -9,7 +9,6 @@ import {BrowserRouter as Router} from "react-router-dom";
 import GlobalStyle from "./styled/GlobalStyle";
 import  { ThemeProvider} from "styled-components";
 import Theme from './styled/theme.js';
-
 ReactDOM.render(
     <ThemeProvider theme={Theme}>
         <AppProvider>

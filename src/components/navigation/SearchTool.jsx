@@ -16,6 +16,8 @@ const SearchBox = styled.input`
   color: black;
   border-radius: 13px;
   
+  display: none;
+  
   &::placeholder{
     color: #636e72;
   }

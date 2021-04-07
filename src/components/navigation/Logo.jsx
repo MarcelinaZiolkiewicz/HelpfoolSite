@@ -11,7 +11,7 @@ const LogoWrapper = styled.p`
   text-align: left;
 
   @media(max-width: 415px){
-    width: 90vw;
+    width: 70vw;
     margin: 0 auto;
   }
 `

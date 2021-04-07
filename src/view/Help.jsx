@@ -43,7 +43,7 @@ const Help = () => {
                 </StyledLi>
 
                 <StyledLi>
-                    <Link href="#" target="_blank">
+                    <Link href="https://trello.com/b/2HJNnt6T/helpfool" target="_blank">
                         {isEnglish ? language.english.Help.buttonTrello : language.polish.Help.buttonTrello }
                     </Link>
                 </StyledLi>

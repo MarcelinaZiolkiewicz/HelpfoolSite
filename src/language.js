@@ -11,8 +11,9 @@ export const language = {
             about: "O projekcie",
             aboutMessage: "Praca programisty nie należy do najłatwiejszych, często wymaga od nas przekopywania się przez tony internetu w poszukiwaniu potrzebnych do prototypowania czy tworzenia aplikacji bibliotek, grafik, ikon, filmów itd. Tak, mnie też to zawsze męczyło, często jak znalazłem jakąś przydatną stronę to w końcu i tak ginęła i musiałem jej szukać na nowo. A gdyby tak nie musieć spędzać tony czasu na szukaniu tego co trzeba? Właśnie dlatego powstało Helpfool, żeby unikać tracenia czasu na szukanie, bo tutaj wszystko jest pod ręką, zawsze.",
             resourcesLabel: "Wykorzystane zasoby",
-            resourcesText: "Cała strona jest darmowa i zostały do niej wykorzystane darmowe zasoby które możecie znaleźć pod tymi linkami",
+            resourcesText: "Cała strona jest darmowa i zostały do niej wykorzystane darmowe zasoby, takie jak ikony czy spis linków z darmowymi stronami które są główną zawartością tej strony. Wszystko możecie znaleźć pod podanymi linkami.",
             resourceIcons: "Ikony",
+            resourceSource: "Źródło",
         },
         Help: {
             helpLabel: "Chcę pomóc!",
@@ -34,8 +35,9 @@ export const language = {
             about: "About project",
             aboutMessage: "Praca programisty nie należy do najłatwiejszych, często wymaga od nas przekopywania się przez tony internetu w poszukiwaniu potrzebnych do prototypowania czy tworzenia aplikacji bibliotek, grafik, ikon, filmów itd. Tak, mnie też to zawsze męczyło, często jak znalazłem jakąś przydatną stronę to w końcu i tak ginęła i musiałem jej szukać na nowo. A gdyby tak nie musieć spędzać tony czasu na szukaniu tego co trzeba? Właśnie dlatego powstało Helpfool, żeby unikać tracenia czasu na szukanie, bo tutaj wszystko jest pod ręką, zawsze.",
             resourcesLabel: "Used resources",
-            resourcesText: "Cała strona jest darmowa i zostały do niej wykorzystane darmowe zasoby które możecie znaleźć pod tymi linkami",
+            resourcesText: "Cała strona jest darmowa i zostały do niej wykorzystane darmowe zasoby które możecie znaleźć pod tymi linkami.",
             resourceIcons: "Icons",
+            resourceSource: "Source",
         },
         Help: {
             helpLabel: "I want to help!",

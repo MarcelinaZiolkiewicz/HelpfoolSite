@@ -69,20 +69,26 @@ const Content = styled.div`
   }
 `
 
+const Wrapper = styled.div`
+  height: calc(100vh - 100px) ;
+`
+
 const Login = () => {
     return(
-        <LoginBox>
-            <Content>
-                <Label>
-                    Logowanie
-                </Label>
-                <form>
-                    <Input type="text" placeholder="Login"/>
-                    <Input type="password" placeholder="Password"/>
-                    <Submit>Login</Submit>
-                </form>
-            </Content>
-        </LoginBox>
+        <Wrapper>
+            <LoginBox>
+                <Content>
+                    <Label>
+                        Logowanie
+                    </Label>
+                    <form>
+                        <Input type="text" placeholder="Login"/>
+                        <Input type="password" placeholder="Password"/>
+                        <Submit>Login</Submit>
+                    </form>
+                </Content>
+            </LoginBox>
+        </Wrapper>
     );
 }
 

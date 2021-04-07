@@ -57,6 +57,46 @@ export const toolsList = [
                 descriptionPL: 'Polski',
                 descriptionENG: 'English',
                 id: '90d4bec8-6a42-473f-adc4-d5960159179a',
+                tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'fontawesome', 'icons',]
+            },
+            {
+                name: "UXWing",
+                link: 'https://uxwing.com/',
+                img: '/logos/uxwing.svg',
+                price: true,
+                descriptionPL: 'Dobrze zoptymalizowane, Darmowe ikony na komercyjny użytek',
+                descriptionENG: 'Well Optimized, Free icons for commercial use',
+                id: '4ced8e9c-ee2d-450e-b038-21da8098fe9b',
+                tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'uxwing', 'icons',]
+            },
+            {
+                name: "Shapedfonts",
+                link: 'https://shapedfonts.com/iconclub/',
+                img: '/logos/shapedfonts.svg',
+                price: true,
+                descriptionPL: 'Ponad 8000 darmowych ikon',
+                descriptionENG: '8000+ free icons',
+                id: '15642b19-87bf-49ab-8152-35a0288d4e41',
+                tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'icons8', 'icons',]
+            },
+            {
+                name: "feathericons",
+                link: 'https://feathericons.com/',
+                img: '/logos/feathericons.svg',
+                price: true,
+                descriptionPL: 'Piękne, edytowalne ikony, z otwartym kodem źródłowym',
+                descriptionENG: 'Beautiful, customizable open source icons',
+                id: 'e142b5e8-6a75-4a6c-8bf7-afd9e252d76e',
+                tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'icons8', 'icons',]
+            },
+            {
+                name: "Tabler icons",
+                link: 'https://tablericons.com/',
+                img: '/logos/tablericons.svg',
+                price: true,
+                descriptionPL: 'Ponad 800 edytowalnych ikon w SVG, z otwatym kodem',
+                descriptionENG: '470+ highly customizable open source SVG icons',
+                id: 'f8a6dfa0-c6fb-43b3-a9a1-c2fadb7eec34',
                 tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'icons8', 'icons',]
             },
         ]

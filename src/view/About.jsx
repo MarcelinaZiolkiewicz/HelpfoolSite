@@ -13,6 +13,10 @@ import eng from  '../images/eng.png';
 
 const Link = styled.a`
   font-size: 20px;
+  text-decoration: none;
+  color: #22a6b3;
+  font-weight: bolder;
+  
 `
 
 const Icon = styled.div`
@@ -25,8 +29,12 @@ const Icon = styled.div`
   margin-top: 10px;
 `
 
-const Icons = styled.div`
+const ResourcesList = styled.div`
   padding-left: 2vw;
+  
+  @media(max-width: 415px){
+    padding-bottom: 60px;
+  }
 `
 
 const About = () => {
@@ -47,7 +55,7 @@ const About = () => {
                 {isEnglish ? language.english.About.resourcesText : language.polish.About.resourcesText}
             </InfoText>
 
-            <Icons>
+            <ResourcesList>
                 <SmallerLabel>
                     {isEnglish ? language.english.About.resourceIcons : language.polish.About.resourceIcons}
                 </SmallerLabel>
@@ -70,8 +78,18 @@ const About = () => {
                         </Link>
                     </ButtonElement>
                 </ListWrapper>
-            </Icons>
-
+                {/*Źródło*/}
+                <SmallerLabel>
+                    {isEnglish ? language.english.About.resourceSource : language.polish.About.resourceSource}
+                </SmallerLabel>
+                <ListWrapper>
+                    <ButtonElement>
+                        <Link href="https://github.com/bradtraversy/design-resources-for-developers" target="_blank">
+                            {isEnglish ? "Resource list" : "Lista zasobów"}
+                        </Link>
+                    </ButtonElement>
+                </ListWrapper>
+            </ResourcesList>
         </SubpagesWrapper>
     );
 }

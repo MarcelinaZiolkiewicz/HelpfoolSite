@@ -9,6 +9,10 @@ const CategoryText = styled.p`
   font-weight: bold;
   text-transform: uppercase;
   padding-bottom: 20px;
+  
+  @media(max-width: 415px){
+    padding: 20px 10px;
+  }
 `
 
 const Wrapper = styled.div`

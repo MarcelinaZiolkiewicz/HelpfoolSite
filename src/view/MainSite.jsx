@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   
   @media(max-width: 415px){
     width: 100vw;
+    margin-top: 5vh;
   }
 `
 

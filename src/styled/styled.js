@@ -16,6 +16,11 @@ export const Icon = styled.div`
   height: 40px;
   width: 40px;
   margin-left: -10px;
+  
+  @media(max-width: 415px){
+    height: 60px;
+    width: 60px;
+  }
 `
 
 //List
@@ -24,16 +29,23 @@ export const MenuWrapper = styled.ul`
   flex-direction: row;
   align-items: center;
   padding-right: 15px;
-
+  
   @media(max-width: 415px){
-    display: none;
-    //background-color: white;
-    //z-index: 2;
-    //position: absolute;
-    //flex-direction: column;
-    //left: 25%;
-    //top: 25%;
-    //transform: translate(25%, 25%);
+    display: ${props => props.isOpen ? 'flex' : 'none'};
+    flex-direction: column;
+    background-color: white;
+    padding-top: 50%;
+    height: 100vh;
+    width: 100vw;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    
+    a{
+      font-size: 28px;
+    }
+    
   }
 `
 

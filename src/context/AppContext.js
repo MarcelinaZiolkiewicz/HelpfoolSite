@@ -4,17 +4,32 @@ export const AppContext = createContext();
 
 const AppProvider = props => {
 
-    const [darkTheme, setDarkTheme] = useState(true);
+    const [isDarkTheme, setIsDarkTheme] = useState(true);
     const [isEnglish, setIsEnglish] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(0);
 
     const handleChangeLanguage = () => {
         setIsEnglish(!isEnglish);
     }
+    const handleMenuOpen = () => {
+        if (!isMenuOpen){
+            setScrollPosition(window.pageYOffset);
+        }
+        window.scrollTo(0, scrollPosition);
+        setIsMenuOpen(!isMenuOpen);
+    }
+    const handleThemeChange = () => {
+        setIsDarkTheme(!isDarkTheme);
+    }
 
     const storeObject = {
-        darkTheme,
+        isDarkTheme,
         isEnglish,
+        isMenuOpen,
         handleChangeLanguage,
+        handleMenuOpen,
+        handleThemeChange,
     }
 
     return(

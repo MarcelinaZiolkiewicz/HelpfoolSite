@@ -13,16 +13,16 @@ const ListItem = styled.div`
   max-height: 65px;
   
   &:nth-of-type(even){
-    background-color: #EFF2EF;
+    background-color: #E4E4E4;
   }
   
   @media(max-width: 415px){
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 3fr 2fr;
     grid-template-rows: auto;
     grid-template-areas: 
-      "logo name price"
-      "middle middle middle"
-      "bottom bottom bottom";
+      "name price"
+      "middle middle"
+      "bottom bottom";
     max-height: unset;
     max-width: 100vw;
   }
@@ -39,6 +39,7 @@ const Logo = styled.div`
   
   @media(max-width: 415px){
     grid-area: logo;
+    display: none;
     height: 30px;
     width: 30px;
   }
@@ -53,8 +54,10 @@ const Description = styled.p`
   
   @media(max-width: 415px){
     grid-area: middle;
-    font-size: 14px;
-    height: 80px;
+    padding: 10px 10px;
+    font-size: 16px;
+    text-align: center;
+    height: unset;
   }
 `
 
@@ -62,13 +65,16 @@ const Price = styled.p`
   font-family: 'Lexend', sans-serif;
   font-weight: 600;
   color: ${props => props.price ? '#00C52B' : '#DBB802'};
-  padding: 15px 20px;
+  padding: 15px 10px;
   border-left: 2px solid #E0E0E0;
   border-right: 2px solid #E0E0E0;
   text-align: center;
   
   @media(max-width: 415px){
     grid-area: price;
+    border-left: 2px solid #757575;
+    border-right: none;
+    padding: 10px 10px;
   }
 `
 
@@ -89,6 +95,13 @@ const GetIt = styled.button`
 
   @media(max-width: 415px){
     grid-area: bottom;
+    //border-top: 1px solid #757575;
+    font-size: 18px;
+
+    &:hover{
+      transform: none;
+    }
+    
   }
 `
 
@@ -108,9 +121,15 @@ const ItemName = styled.p`
   margin-left: 40px;
   padding: 10px 25px 10px 0;
   border-right: 2px solid #E0E0E0;
+  
 
   @media(max-width: 415px){
     grid-area: name;
+    font-size: 22px;
+    padding: 5px 25px 5px 0;
+    border-right: none;
+    text-align: center;
+    margin-left: 0px;
   }
 `
 
