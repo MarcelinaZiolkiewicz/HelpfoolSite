@@ -1,10 +1,12 @@
-import React, {useContext} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import {AppContext} from "../context/AppContext";
 
+import {AppContext} from "../context/AppContext";
 import {toolsList} from "../toolsList";
 
 import Category from "../components/Category";
+import SortBar from "../components/SortBar";
+import BackToTop from "../components/BackToTop";
 
 const Wrapper = styled.div`
   width: 80vw;
@@ -19,16 +21,15 @@ const Wrapper = styled.div`
 
 const MainSite = () => {
 
-    const {isEnglish} = useContext(AppContext);
-
     const items = toolsList.map( item => (
             <Category item={item} />
     ));
 
-
     return(
         <Wrapper>
+            {/*<SortBar/>*/}
             {items}
+            <BackToTop/>
         </Wrapper>
     );
 }

@@ -7,6 +7,12 @@ import eng from  '../images/eng.png';
 export const SuperLink = styled(Link)`
   text-decoration: none;
   color: ${props => props.theme.colors.text};
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `
 //Language icon
 export const Icon = styled.div`
@@ -31,9 +37,11 @@ export const MenuWrapper = styled.ul`
   padding-right: 15px;
   
   @media(max-width: 415px){
-    display: ${props => props.isOpen ? 'flex' : 'none'};
+    display: flex;
     flex-direction: column;
     background-color: white;
+    transform: ${props => props.isOpen ? 'translateX(0)' : 'translateX(100%)'};
+    //opacity: ${props => props.isOpen ? '1' : '0'};
     padding-top: 50%;
     height: 100vh;
     width: 100vw;
@@ -41,6 +49,7 @@ export const MenuWrapper = styled.ul`
     position: fixed;
     top: 0;
     overflow: hidden;
+    transition: transform .2s ease-in-out;
     
     a{
       font-size: 28px;

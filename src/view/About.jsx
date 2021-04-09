@@ -10,6 +10,7 @@ import { language } from '../language';
 import link from '../images/link.png';
 import pl from '../images/pl.png';
 import eng from  '../images/eng.png';
+import arrow from  '../images/arrow.png';
 
 const Link = styled.a`
   font-size: 20px;
@@ -27,6 +28,11 @@ const Icon = styled.div`
   height: 60px;
   width: 60px;
   margin-top: 10px;
+  
+  @media(max-width: 415px){
+    height: 12vw;
+    width: 12vw;
+  }
 `
 
 const ResourcesList = styled.div`
@@ -59,6 +65,7 @@ const About = () => {
                 <SmallerLabel>
                     {isEnglish ? language.english.About.resourceIcons : language.polish.About.resourceIcons}
                 </SmallerLabel>
+
                 <ListWrapper>
                     <ButtonElement>
                         <Link href="https://icons8.com/icon/59826/link" target="_blank">
@@ -77,6 +84,13 @@ const About = () => {
                             <Icon link={eng}/>
                         </Link>
                     </ButtonElement>
+
+                    <ButtonElement>
+                        <Link href="https://icons8.com/icons/set/arrow" target="_blank">
+                            <Icon link={arrow}/>
+                        </Link>
+                    </ButtonElement>
+
                 </ListWrapper>
                 {/*Źródło*/}
                 <SmallerLabel>

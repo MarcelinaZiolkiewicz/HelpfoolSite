@@ -11,6 +11,12 @@ const MenuButtons = () => {
 
     return(
         <MenuWrapper isOpen={isMenuOpen}>
+            <ButtonElement onClick={handleMenuOpen} mobile={false}>
+                <SuperLink to="/">
+                    { isEnglish ? language.english.home : language.polish.home}
+                </SuperLink>
+            </ButtonElement>
+
             <ButtonElement onClick={handleMenuOpen}>
                 <SuperLink to="/about">
                     { isEnglish ? language.english.about : language.polish.about}
@@ -29,7 +35,7 @@ const MenuButtons = () => {
                 </SuperLink>
             </ButtonElement>
 
-            <ButtonElement onClick={handleMenuOpen}>
+            <ButtonElement>
                 <Icon isEnglish={isEnglish} onClick={handleChangeLanguage}/>
             </ButtonElement>
 

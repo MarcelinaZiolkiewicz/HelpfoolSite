@@ -15,12 +15,20 @@ const AppProvider = props => {
     const handleMenuOpen = () => {
         if (!isMenuOpen){
             setScrollPosition(window.pageYOffset);
+        }else {
+            window.scrollTo(0, scrollPosition);
         }
-        window.scrollTo(0, scrollPosition);
         setIsMenuOpen(!isMenuOpen);
     }
     const handleThemeChange = () => {
         setIsDarkTheme(!isDarkTheme);
+    }
+
+    const handleBackToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
     }
 
     const storeObject = {
@@ -30,6 +38,7 @@ const AppProvider = props => {
         handleChangeLanguage,
         handleMenuOpen,
         handleThemeChange,
+        handleBackToTop,
     }
 
     return(

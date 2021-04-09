@@ -95,7 +95,6 @@ const GetIt = styled.button`
 
   @media(max-width: 415px){
     grid-area: bottom;
-    //border-top: 1px solid #757575;
     font-size: 18px;
 
     &:hover{

@@ -1,20 +1,38 @@
 import React from 'react';
 import styled from "styled-components";
 
-const StyledBurger = styled.button`
+const Background = styled.div`
+  background-color: rgba(245, 247, 245, 0.7);
+  padding: 20px 25px;
+  top: 0;
+  right: 0;
   position: fixed;
-  right: 30px;
+  border-bottom-left-radius: 20px;
+  z-index: 10;
+  
+  //noSelect
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  @media(min-width: 420px){
+    display: none;
+  }
+`
+
+const StyledBurger = styled.button`
+  background-color: transparent;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 2rem;
   height: 2rem;
-  background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0;
-  z-index: 10;
-  
 
   &:focus {
     outline: none;
@@ -48,11 +66,13 @@ const StyledBurger = styled.button`
 `
 const BurgerButton = ({ open, setOpen }) => {
     return (
-        <StyledBurger open={open} onClick={() => setOpen(!open)}>
-            <div />
-            <div />
-            <div />
-        </StyledBurger>
+        <Background>
+            <StyledBurger open={open} onClick={() => setOpen(!open)}>
+                <div />
+                <div />
+                <div />
+            </StyledBurger>
+        </Background>
     )
 }
 
