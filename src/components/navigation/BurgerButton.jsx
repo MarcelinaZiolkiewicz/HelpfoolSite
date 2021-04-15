@@ -9,6 +9,8 @@ const Background = styled.div`
   position: fixed;
   border-bottom-left-radius: 20px;
   z-index: 10;
+  transition: .3s;
+  cursor: pointer;
   
   //noSelect
   -webkit-tap-highlight-color: transparent;
@@ -18,7 +20,11 @@ const Background = styled.div`
   -ms-user-select: none;
   user-select: none;
   
-  @media(min-width: 420px){
+  &:hover{
+    background-color: rgba(230, 247, 245, 1);
+  }
+  
+  @media(min-width: 730px){
     display: none;
   }
 `
@@ -60,7 +66,7 @@ const StyledBurger = styled.button`
       transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
     }
   }
-  @media(min-width: 420px){
+  @media(min-width: 730px){
     display: none;
   }
 `

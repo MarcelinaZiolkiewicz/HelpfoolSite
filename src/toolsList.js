@@ -62,7 +62,7 @@ export const toolsList = [
             {
                 name: "UXWing",
                 link: 'https://uxwing.com/',
-                img: '/logos/uxwing.svg',
+                img: '/logos/UnavailableLogo.png',
                 price: true,
                 descriptionPL: 'Dobrze zoptymalizowane, Darmowe ikony na komercyjny użytek',
                 descriptionENG: 'Well Optimized, Free icons for commercial use',
@@ -72,7 +72,7 @@ export const toolsList = [
             {
                 name: "Shapedfonts",
                 link: 'https://shapedfonts.com/iconclub/',
-                img: '/logos/shapedfonts.svg',
+                img: '/logos/UnavailableLogo.png',
                 price: true,
                 descriptionPL: 'Ponad 8000 darmowych ikon',
                 descriptionENG: '8000+ free icons',
@@ -82,7 +82,7 @@ export const toolsList = [
             {
                 name: "feathericons",
                 link: 'https://feathericons.com/',
-                img: '/logos/feathericons.svg',
+                img: '/logos/UnavailableLogo.png',
                 price: true,
                 descriptionPL: 'Piękne, edytowalne ikony, z otwartym kodem źródłowym',
                 descriptionENG: 'Beautiful, customizable open source icons',
@@ -92,12 +92,44 @@ export const toolsList = [
             {
                 name: "Tabler icons",
                 link: 'https://tablericons.com/',
-                img: '/logos/tablericons.svg',
+                img: '/logos/UnavailableLogo.png',
                 price: true,
                 descriptionPL: 'Ponad 800 edytowalnych ikon w SVG, z otwatym kodem',
                 descriptionENG: '470+ highly customizable open source SVG icons',
                 id: 'f8a6dfa0-c6fb-43b3-a9a1-c2fadb7eec34',
                 tagi: ['design', 'projektowanie', 'layout', 'webdesign', 'frontend', 'icons8', 'icons',]
+            },
+        ]
+    },
+    {
+        typeENG: "libraries",
+        typePL: "Biblioteki",
+        tools: [
+            {
+                name: "uuid",
+                link: 'https://www.npmjs.com/package/uuid',
+                img: '/logos/UnavailableLogo.png',
+                price: true,
+                descriptionPL: 'Biblioteka do generwoania losowego klucza np. klucza ID',
+                descriptionENG: 'English',
+                id: '993ba6b4-f915-480e-ba53-381071ecfae3',
+                tagi: ['lib', 'uuid', 'library', 'js', 'cryptographic', 'idkey', 'security',]
+            },
+        ]
+    },
+    {
+        typeENG: "animations",
+        typePL: "Animacje",
+        tools: [
+            {
+                name: "lottie",
+                link: 'https://lottiefiles.com/',
+                img: '/logos/UnavailableLogo.png',
+                price: true,
+                descriptionPL: 'Strona z darmowymi i płatnymi animacjami lottie',
+                descriptionENG: 'English',
+                id: '993ba6b4-f915-480e-ba53-381071ecfae5',
+                tagi: ['aniamtions', 'animacje', 'lottie', 'js', 'jsonanimations', 'json', 'custom',]
             },
         ]
     }

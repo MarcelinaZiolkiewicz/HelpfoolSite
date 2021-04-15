@@ -37,11 +37,17 @@ const Logo = styled.div`
   height: 50px;
   width: 50px;
   
-  @media(max-width: 415px){
-    grid-area: logo;
-    display: none;
+  @media(max-width: 730px){
+    position: relative;
+    top: 10px;
+    left: 10px;
     height: 30px;
     width: 30px;
+    
+  }
+  
+  @media(max-width: 415px){
+    display: none;
   }
 `
 
@@ -52,12 +58,16 @@ const Description = styled.p`
   color: black;
   font-size: 16px;
   
-  @media(max-width: 415px){
-    grid-area: middle;
+  @media(max-width: 730px){
+    font-size: 14px;
     padding: 10px 10px;
-    font-size: 16px;
     text-align: center;
     height: unset;
+  }
+  
+  @media(max-width: 415px){
+    grid-area: middle;
+    font-size: 16px;
   }
 `
 
@@ -93,6 +103,11 @@ const GetIt = styled.button`
     transform: scale(1.2);
   }
 
+  @media(max-width: 730px){
+    font-size: 16px;
+    line-height: 60px;
+  }
+
   @media(max-width: 415px){
     grid-area: bottom;
     font-size: 18px;
@@ -120,8 +135,12 @@ const ItemName = styled.p`
   margin-left: 40px;
   padding: 10px 25px 10px 0;
   border-right: 2px solid #E0E0E0;
-  
 
+  @media(max-width: 730px){
+    font-size: 18px;
+    
+  }
+  
   @media(max-width: 415px){
     grid-area: name;
     font-size: 22px;

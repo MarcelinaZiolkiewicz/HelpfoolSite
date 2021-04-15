@@ -26,7 +26,7 @@ const SearchBox = styled.input`
     background-color: #97E9E9;
   }
 
-  @media(max-width: 415px){
+  @media(max-width: 730px){
     font-size: 16px;
     width: 75vw;
     margin: 0 auto;

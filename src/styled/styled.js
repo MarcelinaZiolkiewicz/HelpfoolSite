@@ -23,7 +23,7 @@ export const Icon = styled.div`
   width: 40px;
   margin-left: -10px;
   
-  @media(max-width: 415px){
+  @media(max-width: 730px){
     height: 60px;
     width: 60px;
   }
@@ -36,13 +36,13 @@ export const MenuWrapper = styled.ul`
   align-items: center;
   padding-right: 15px;
   
-  @media(max-width: 415px){
+  @media(max-width: 730px){
     display: flex;
     flex-direction: column;
     background-color: white;
     transform: ${props => props.isOpen ? 'translateX(0)' : 'translateX(100%)'};
     //opacity: ${props => props.isOpen ? '1' : '0'};
-    padding-top: 50%;
+    padding-top: 50vw;
     height: 100vh;
     width: 100vw;
     z-index: 2;

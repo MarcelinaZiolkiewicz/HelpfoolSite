@@ -8,6 +8,7 @@ const AppProvider = props => {
     const [isEnglish, setIsEnglish] = useState(true);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
+    const [messageVisibility, setMessageVisibility] = useState(true);
 
     const handleChangeLanguage = () => {
         setIsEnglish(!isEnglish);
@@ -31,14 +32,20 @@ const AppProvider = props => {
         })
     }
 
+    const handleCloseMessage = () => {
+        setMessageVisibility(!messageVisibility);
+    }
+
     const storeObject = {
         isDarkTheme,
         isEnglish,
         isMenuOpen,
+        messageVisibility,
         handleChangeLanguage,
         handleMenuOpen,
         handleThemeChange,
         handleBackToTop,
+        handleCloseMessage,
     }
 
     return(

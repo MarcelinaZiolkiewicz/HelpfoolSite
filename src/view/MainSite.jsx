@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
 
 import {toolsList} from "../toolsList";
@@ -6,13 +6,15 @@ import {toolsList} from "../toolsList";
 import Category from "../components/Category";
 import SortBar from "../components/SortBar";
 import BackToTop from "../components/BackToTop";
+import Message from "../components/Message";
+import {AppContext} from "../context/AppContext";
 
 const Wrapper = styled.div`
   width: 80vw;
   background-color: #FFFFFF;
-  margin: 15vh auto 0 auto;
+  margin: 10vh auto 0 auto;
   
-  @media(max-width: 415px){
+  @media(max-width: 730px){
     width: 100vw;
     margin-top: 5vh;
   }
@@ -20,11 +22,13 @@ const Wrapper = styled.div`
 
 const MainSite = () => {
 
+    const { messageVisibility } = useContext(AppContext);
+
     const [myData, setMyData] = useState({toolsList: []});
     const [errorMessage, setErrorMessage] = useState("");
 
     const getData = () => {
-        fetch('http://localhost:3000/data.json')
+        fetch('http://www.helpfool.pl/dataTest/data.json')
             .then(response => {
                 if(!response.ok) throw Error(response.statusText);
                 return response.json();
@@ -43,15 +47,20 @@ const MainSite = () => {
        <Category item={item} />
     ));
 
+    const items = toolsList.map( item => (
+       <Category item={item} />
+    ));
+
     useEffect(() => {
         getData();
     }, []);
 
     return(
         <Wrapper>
+            { messageVisibility && <Message message="Cały czas pracujemy żeby usprawnić Helpfool! "/>}
             {/*<SortBar/>*/}
-            {/*{errorMessage && <div>Something went wrong...</div>}*/}
-            {renderCategories}
+            {items}
+            {/*{renderCategories}*/}
             <BackToTop/>
         </Wrapper>
     );

@@ -10,7 +10,7 @@ const LogoWrapper = styled.p`
   font-weight: bold;
   text-align: left;
 
-  @media(max-width: 415px){
+  @media(max-width: 730px){
     width: 70vw;
     margin: 0 auto;
   }

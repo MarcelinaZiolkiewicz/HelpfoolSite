@@ -10,7 +10,8 @@ const CategoryText = styled.p`
   text-transform: uppercase;
   padding-bottom: 20px;
   
-  @media(max-width: 415px){
+  @media(max-width: 730px){
+    font-size: 28px;
     padding: 20px 10px;
   }
 `
@@ -18,7 +19,7 @@ const CategoryText = styled.p`
 const Wrapper = styled.div`
   padding: 10px 20px;
   
-  @media(max-width: 415px){
+  @media(max-width: 730px){
     padding: unset;
   }
 `
