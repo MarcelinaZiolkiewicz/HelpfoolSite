@@ -10,11 +10,16 @@ import About from "../view/About";
 import Help from "../view/Help";
 import Login from "../view/Login";
 import MainSite from "../view/MainSite";
+import AdminPanel from "../view/AdminPanel";
 
 const ContentSelector = () => {
     return(
       <main>
           <Switch>
+              <Route
+                  component={AdminPanel}
+                  path="/admin"
+              />
               <Route
                 component={About}
                 path="/about"
@@ -30,6 +35,7 @@ const ContentSelector = () => {
               <Route
                 component={MainSite}
                 path="/"
+                exact
               />
               <Redirect from="*" to="/" />
           </Switch>

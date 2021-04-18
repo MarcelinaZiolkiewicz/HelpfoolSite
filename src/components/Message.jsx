@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import styled from "styled-components";
 
 import closeImage from '../images/close.png';
@@ -56,7 +56,7 @@ const Close = styled.button`
 
 const Message = ({message}) => {
 
-    const {handleCloseMessage} = useContext(AppContext);
+    const { handleCloseMessage } = useContext(AppContext);
 
     return(
         <MyMessage>

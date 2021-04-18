@@ -5,7 +5,7 @@ export const AppContext = createContext();
 const AppProvider = props => {
 
     const [isDarkTheme, setIsDarkTheme] = useState(true);
-    const [isEnglish, setIsEnglish] = useState(true);
+    const [isEnglish, setIsEnglish] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
     const [messageVisibility, setMessageVisibility] = useState(true);
@@ -45,7 +45,7 @@ const AppProvider = props => {
         handleMenuOpen,
         handleThemeChange,
         handleBackToTop,
-        handleCloseMessage,
+        handleCloseMessage
     }
 
     return(

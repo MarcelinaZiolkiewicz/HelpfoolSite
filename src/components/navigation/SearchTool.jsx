@@ -41,7 +41,7 @@ const SearchTool = () => {
 
     const { isEnglish } = useContext(AppContext);
     const [searchValue, setSearchValue] = useState("");
-    const [ isInputAvailable, setIsInputAvailable ] = useState(false);
+    // const [ isInputAvailable, setIsInputAvailable ] = useState(false);
 
     const handleSubmit = e => {
         e.preventDefault();

@@ -2,12 +2,13 @@ import React, {useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
 
 import {toolsList} from "../toolsList";
+import {language} from '../language';
+import {AppContext} from "../context/AppContext";
 
 import Category from "../components/Category";
 import SortBar from "../components/SortBar";
 import BackToTop from "../components/BackToTop";
 import Message from "../components/Message";
-import {AppContext} from "../context/AppContext";
 
 const Wrapper = styled.div`
   width: 80vw;
@@ -22,7 +23,7 @@ const Wrapper = styled.div`
 
 const MainSite = () => {
 
-    const { messageVisibility } = useContext(AppContext);
+    const { messageVisibility, isEnglish } = useContext(AppContext);
 
     const [myData, setMyData] = useState({toolsList: []});
     const [errorMessage, setErrorMessage] = useState("");
@@ -51,13 +52,13 @@ const MainSite = () => {
        <Category item={item} />
     ));
 
-    useEffect(() => {
-        getData();
-    }, []);
+    // useEffect(() => {
+    //     getData();
+    // }, []);
 
     return(
         <Wrapper>
-            { messageVisibility && <Message message="Cały czas pracujemy żeby usprawnić Helpfool! "/>}
+            { messageVisibility && <Message message={isEnglish ? language.english.mainMsg : language.polish.mainMsg}/>}
             {/*<SortBar/>*/}
             {items}
             {/*{renderCategories}*/}

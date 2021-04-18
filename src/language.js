@@ -8,6 +8,7 @@ export const language = {
         pricePaid: "Płatny",
         designLabel: "Projektowanie",
         home: "Lista",
+        mainMsg: "Cały czas pracujemy żeby usprawnić Helpfool! ",
         About: {
             about: "O projekcie",
             aboutMessage: "Praca programisty nie należy do najłatwiejszych, często wymaga od nas przekopywania się przez tony internetu w poszukiwaniu potrzebnych do prototypowania czy tworzenia aplikacji bibliotek, grafik, ikon, filmów itd. Tak, mnie też to zawsze męczyło, często jak znalazłem jakąś przydatną stronę to w końcu i tak ginęła i musiałem jej szukać na nowo. A gdyby tak nie musieć spędzać tony czasu na szukaniu tego co trzeba? Właśnie dlatego powstało Helpfool, żeby unikać tracenia czasu na szukanie, bo tutaj wszystko jest pod ręką, zawsze.",
@@ -33,6 +34,7 @@ export const language = {
         pricePaid: "Paid",
         designLabel: "Design",
         home: "Home",
+        mainMsg: "We are still working to improve Helpfool! ",
         About: {
             about: "About project",
             aboutMessage: "Praca programisty nie należy do najłatwiejszych, często wymaga od nas przekopywania się przez tony internetu w poszukiwaniu potrzebnych do prototypowania czy tworzenia aplikacji bibliotek, grafik, ikon, filmów itd. Tak, mnie też to zawsze męczyło, często jak znalazłem jakąś przydatną stronę to w końcu i tak ginęła i musiałem jej szukać na nowo. A gdyby tak nie musieć spędzać tony czasu na szukaniu tego co trzeba? Właśnie dlatego powstało Helpfool, żeby unikać tracenia czasu na szukanie, bo tutaj wszystko jest pod ręką, zawsze.",

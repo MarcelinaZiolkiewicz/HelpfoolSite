@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import arrow from '../images/arrowWhite.png';
 import {AppContext} from "../context/AppContext";
-import {SuperLink} from "../styled/styled";
 
 const BackButton = styled.div`
   height: 4rem;

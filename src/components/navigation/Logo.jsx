@@ -9,6 +9,7 @@ const LogoWrapper = styled.p`
   padding: 20px ;
   font-weight: bold;
   text-align: left;
+  color: ${props => props.theme ? 'black' : 'white'};
 
   @media(max-width: 730px){
     width: 70vw;
@@ -22,7 +23,7 @@ const Logo = () => {
 
     return(
         <SuperLink to="/">
-            <LogoWrapper>
+            <LogoWrapper theme={isDark}>
                 Helpfool.
             </LogoWrapper>
         </SuperLink>

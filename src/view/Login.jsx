@@ -1,5 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from "styled-components";
+
+import {LoginContext} from "../context/LoginContext";
+
+import {Redirect, Route} from "react-router-dom";
 
 const LoginBox = styled.div`
   width: 400px;
@@ -53,7 +57,7 @@ const Submit = styled.button`
   font-size: 18px;
   transition: .3s;
   cursor: pointer;
-  
+   
   &:hover{
     background-color: #636e72;
     color: white;
@@ -65,7 +69,6 @@ const Content = styled.div`
   width: 10vw;
   @media(max-width: 415px){
     width: 80%;
-    
   }
 `
 
@@ -74,16 +77,36 @@ const Wrapper = styled.div`
 `
 
 const Login = () => {
+
+    const { handleLogin, isAdminLogged, password, login, handleLoginInput, handlePasswordInput } = useContext(LoginContext);
+
     return(
         <Wrapper>
+
+            <Route render={() => (
+                isAdminLogged ? <Redirect to="/admin"/> : null
+            )}/>
+
             <LoginBox>
                 <Content>
                     <Label>
                         Logowanie
                     </Label>
-                    <form>
-                        <Input type="text" placeholder="Login"/>
-                        <Input type="password" placeholder="Password"/>
+                    <form onSubmit={handleLogin}>
+
+                        <Input
+                            type="text"
+                            placeholder="Login"
+                            value={login}
+                            onChange={handleLoginInput}
+                        />
+                        <Input
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={handlePasswordInput}
+                        />
+
                         <Submit>Login</Submit>
                     </form>
                 </Content>

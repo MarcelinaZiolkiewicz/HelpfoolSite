@@ -3,6 +3,7 @@
     {
       "typeENG": "design",
       "typePL": "Projektowanie",
+      "id": "",
       "tools": [
         {
           "name": "Figma",
@@ -12,6 +13,9 @@
           "descriptionPL": "Zaawansowany program do projektowania interfejsów i grafik",
           "descriptionENG": "Advanced program for creating application layouts",
           "id": "9b68973a-c0f0-4e30-8f98-364bfaeafd8",
+          "clicksInTotal": 0,
+          "clicksPerWeek": 0,
+          "likes": 0,
           "tagi": ["design", "projektowanie", "layout", "webdesign", "frontend", "figma"]
         },
         {
@@ -22,6 +26,9 @@
           "descriptionPL": "Zaawansowany program do projektowania interfejsów i grafik",
           "descriptionENG": "Advanced program for creating application layouts",
           "id": "1dba07a6-0aa8-4d14-8425-ca9110cc068b",
+          "clicksInTotal": 0,
+          "clicksPerWeek": 0,
+          "likes": 0,
           "tagi": ["design", "projektowanie", "layout", "webdesign", "frontend", "figma"]
         },
         {
@@ -32,6 +39,9 @@
           "descriptionPL": "Zaawansowany program do projektowania interfejsów i grafik",
           "descriptionENG": "Advanced program for creating application layouts",
           "id": "1dba07a6-0aa8-4d14-8425-ca9110cc068b",
+          "clicksInTotal": 0,
+          "clicksPerWeek": 0,
+          "likes": 0,
           "tagi": ["design", "projektowanie", "layout", "webdesign", "frontend", "figma"]
         }
       ]
@@ -39,6 +49,7 @@
     {
       "typeENG": "icons",
       "typePL": "Ikony",
+      "id": "",
       "tools": [
         {
           "name": "icons8",
@@ -48,6 +59,9 @@
           "descriptionPL": "Polski",
           "descriptionENG": "English",
           "id": "993ba6b4-f915-480e-ba53-381071ecfae2",
+          "clicksInTotal": 0,
+          "clicksPerWeek": 0,
+          "likes": 0,
           "tagi": ["design", "projektowanie", "layout", "webdesign", "frontend", "figma"]
         },
         {
@@ -58,6 +72,9 @@
           "descriptionPL": "Polski",
           "descriptionENG": "English",
           "id": "90d4bec8-6a42-473f-adc4-d5960159179a",
+          "clicksInTotal": 0,
+          "clicksPerWeek": 0,
+          "likes": 0,
           "tagi": ["design", "projektowanie", "layout", "webdesign", "frontend", "figma"]
         },
         {
@@ -68,6 +85,9 @@
           "descriptionPL": "Dobrze zoptymalizowane, Darmowe ikony na komercyjny użytek",
           "descriptionENG": "Well Optimized, Free icons for commercial use",
           "id": "4ced8e9c-ee2d-450e-b038-21da8098fe9b",
+          "clicksInTotal": 0,
+          "clicksPerWeek": 0,
+          "likes": 0,
           "tagi": ["design", "projektowanie", "layout", "webdesign", "frontend", "figma"]
         },
         {
@@ -78,6 +98,9 @@
           "descriptionPL": "Ponad 8000 darmowych ikon",
           "descriptionENG": "8000+ free icons",
           "id": "15642b19-87bf-49ab-8152-35a0288d4e41",
+          "clicksInTotal": 0,
+          "clicksPerWeek": 0,
+          "likes": 0,
           "tagi": ["design", "projektowanie", "layout", "webdesign", "frontend", "figma"]
         },
         {
@@ -88,6 +111,9 @@
           "descriptionPL": "Piękne, edytowalne ikony, z otwartym kodem źródłowym",
           "descriptionENG": "Beautiful, customizable open source icons",
           "id": "e142b5e8-6a75-4a6c-8bf7-afd9e252d76e",
+          "clicksInTotal": 0,
+          "clicksPerWeek": 0,
+          "likes": 0,
           "tagi": ["design", "projektowanie", "layout", "webdesign", "frontend", "figma"]
         },
         {
@@ -98,7 +124,30 @@
           "descriptionPL": "Ponad 800 edytowalnych ikon w SVG, z otwatym kodem",
           "descriptionENG": "470+ highly customizable open source SVG icons",
           "id": "f8a6dfa0-c6fb-43b3-a9a1-c2fadb7eec34",
+          "clicksInTotal": 0,
+          "clicksPerWeek": 0,
+          "likes": 0,
           "tagi": ["design", "projektowanie", "layout", "webdesign", "frontend", "figma"]
+        }
+      ]
+    },
+    {
+      "typeENG": "empty",
+      "typePL": "Pusty",
+      "id": "",
+      "tools": [
+        {
+          "name": "",
+          "link": "",
+          "img": "",
+          "price": true,
+          "descriptionPL": "",
+          "descriptionENG": "",
+          "id": "",
+          "clicksInTotal": 0,
+          "clicksPerWeek": 0,
+          "likes": 0,
+          "tagi": []
         }
       ]
     }
