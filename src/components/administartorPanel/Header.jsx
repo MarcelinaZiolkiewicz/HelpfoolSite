@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import styled from "styled-components";
 
-import {LoginContext} from "../../context/LoginContext";
+import {AdminContext} from "../../context/AdminContext";
 
 
 const Text = styled.h3`
@@ -31,7 +31,7 @@ const Logout = styled.button`
 
 const Header = () => {
 
-    const { handleLogout } = useContext(LoginContext);
+    const { handleLogout } = useContext(AdminContext);
 
     return(
         <div>

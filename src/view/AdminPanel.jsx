@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
 import {Redirect, Route} from "react-router-dom";
-import {LoginContext} from "../context/LoginContext";
+import {AdminContext} from "../context/AdminContext";
 import AddNewProgram from "../components/administartorPanel/AddNewProgram";
 import Header from "../components/administartorPanel/Header";
 
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 
 const AdminPanel = () => {
 
-    const { isAdminLogged } = useContext(LoginContext);
+    const { isAdminLogged } = useContext(AdminContext);
 
     return(
         <div>

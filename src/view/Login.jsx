@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import styled from "styled-components";
 
-import {LoginContext} from "../context/LoginContext";
+import {AdminContext} from "../context/AdminContext";
 
 import {Redirect, Route} from "react-router-dom";
 
@@ -78,7 +78,7 @@ const Wrapper = styled.div`
 
 const Login = () => {
 
-    const { handleLogin, isAdminLogged, password, login, handleLoginInput, handlePasswordInput } = useContext(LoginContext);
+    const { handleLogin, isAdminLogged, password, login, handleLoginInput, handlePasswordInput } = useContext(AdminContext);
 
     return(
         <Wrapper>

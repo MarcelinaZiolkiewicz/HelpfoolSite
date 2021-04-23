@@ -1,13 +1,17 @@
 import React, { createContext, useState } from 'react';
 
-export const LoginContext = createContext();
+export const AdminContext = createContext();
 
-const LoginProvider = props => {
+const AdminProvider = props => {
 
     const [ login, setLogin ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ isAdminLogged, setIsAdminLogged] = useState(false);
+    const [ itemToAdd, setItemToAdd ] = useState({});
 
+    const toAdd = {
+        name: "name",
+    }
 
     const handleLoginInput = e => {
         setLogin(e.target.value);
@@ -47,10 +51,10 @@ const LoginProvider = props => {
     }
 
     return(
-        <LoginContext.Provider value={storeObject}>
+        <AdminContext.Provider value={storeObject}>
             {props.children}
-        </LoginContext.Provider>
+        </AdminContext.Provider>
     );
 }
 
-export default LoginProvider;
+export default AdminProvider;

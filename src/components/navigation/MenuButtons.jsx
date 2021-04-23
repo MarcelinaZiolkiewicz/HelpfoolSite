@@ -3,13 +3,13 @@ import { SuperLink, ButtonElement, Icon, MenuWrapper } from "../../styled/styled
 
 import {language} from '../../language';
 import {AppContext} from "../../context/AppContext";
-import {LoginContext} from "../../context/LoginContext";
+import {AdminContext} from "../../context/AdminContext";
 
 
 const MenuButtons = () => {
 
     const { isEnglish, handleChangeLanguage, isMenuOpen, handleMenuOpen } = useContext(AppContext);
-    const { isAdminLogged } = useContext(LoginContext);
+    const { isAdminLogged } = useContext(AdminContext);
 
     const isEnglishText = () => {
         if(isAdminLogged){

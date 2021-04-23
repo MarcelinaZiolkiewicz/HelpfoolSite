@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 import AppProvider from "./context/AppContext";
-import LoginProvider from "./context/LoginContext";
+import LoginProvider from "./context/AdminContext";
 
 import {BrowserRouter as Router} from "react-router-dom";
 
