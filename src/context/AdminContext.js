@@ -9,6 +9,10 @@ const AdminProvider = props => {
     const [ isAdminLogged, setIsAdminLogged] = useState(false);
     const [ itemToAdd, setItemToAdd ] = useState({});
 
+    const [ addVisible, setAddVisible ] = useState(false);
+    const [ previewVisible, setPreviewVisible ] = useState(false);
+    // const [ addVisible, setAddVisible ] = useState(false);
+
     const toAdd = {
         name: "name",
     }
@@ -40,14 +44,36 @@ const AdminProvider = props => {
         }
     }
 
+    const handleAddVisible = option => {
+        console.log('działa' + option);
+
+        switch (option) {
+            case 1:
+                setAddVisible(!addVisible);
+                break;
+            case 2:
+                setPreviewVisible(!previewVisible);
+                break;
+            case 3:
+                console.log('jeszcze nie ma');
+                break;
+            default:
+                console.log('Błędna wartość');
+                break;
+        }
+    }
+
     const storeObject = {
         isAdminLogged,
         password,
         login,
+        addVisible,
+        previewVisible,
         handleLogin,
         handleLogout,
         handleLoginInput,
-        handlePasswordInput
+        handlePasswordInput,
+        handleAddVisible
     }
 
     return(

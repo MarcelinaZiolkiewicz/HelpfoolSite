@@ -5,6 +5,7 @@ import {Redirect, Route} from "react-router-dom";
 import {AdminContext} from "../context/AdminContext";
 import AddNewProgram from "../components/administartorPanel/AddNewProgram";
 import Header from "../components/administartorPanel/Header";
+import AdminButtons from "../components/administartorPanel/AdminButtons";
 
 
 const Wrapper = styled.div`
@@ -24,6 +25,7 @@ const AdminPanel = () => {
 
             <Wrapper>
                 <Header/>
+                <AdminButtons/>
                 <AddNewProgram/>
             </Wrapper>
 

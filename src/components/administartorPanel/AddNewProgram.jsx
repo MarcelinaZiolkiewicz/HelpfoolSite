@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useContext} from "react";
 import styled from "styled-components";
 
 import { v4 as uuidv4 } from 'uuid';
@@ -6,54 +6,70 @@ import Select from "react-select";
 
 import TagsInput from "./TagsInput";
 import {defaultCategory, defaultObject, testOptions, sendData} from "./services";
+import {AdminContext} from "../../context/AdminContext";
 
 const Wrapper = styled.div`
   margin-top: 20px;
+  display: ${props => props.isVisible ? 'block' : 'none'};
 `
 
 const SuperSelect = styled(Select)`
-    width: 200px
-`
-
-const Header = styled.button`
-  font-family: 'Lexend', sans-serif;
-  display: inline-block;
-  min-width: 15vw;
-  font-size: 20px;
-  color: black;
-  padding: 10px 20px;
-  border: 2px solid black;
-  margin: 5px 5px;
-  background-color: transparent;
-  transition: .3s;
-  outline: none;
-  
-  &:hover{
-    background-color: black;
-    color: white;
-  }
+  margin-top: 10px;
+  width: 200px;
 `
 
 const Description = styled.label`
-  font-size: 16px;
+  font-size: 22px;
   color: black;
-  display: block;
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bolder;
 `
 
 const Input = styled.input`
+  font-family: 'Lexend', sans-serif;
   display: block;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid black;
+  padding: 5px 10px;
+  outline: none;
+  font-size: 18px;
+  
+  &:focus{
+    border-bottom: 2px solid darkcyan;
+  }
 `
 
 const Checkbox = styled.input`
-  display: block;
+  margin-left: 15px;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
 `
 
 const Textarea = styled.textarea`
   resize: none;
+  display: block;
+  padding: 5px 10px;
+  margin-top: 10px;
+  height: 100px;
+  width: 225px;
+  //border: none;
+  //box-shadow: -8px -8px 0px -6px rgba(0,0,0,0.75);
+  border: 2px solid black;
+  outline: none;
+  
+  &:focus{
+    //box-shadow: -8px -8px 0px -6px darkcyan;
+    border-color: darkcyan;
+  }
+  
+  
 `
 
 const Form = styled.form`
-  display: ${props => props.isVisible ? 'flex' : 'none'};
+  display: flex;
   flex-flow: row wrap;
   padding: 40px;
   
@@ -63,16 +79,38 @@ const Form = styled.form`
 `
 
 const LeftSide = styled.div`
-  width: 50%;
+  width: 30%;
+  
+  @media(max-width: 415px) {
+    width: 100%;
+  }
 `
 
 const RightSide = styled.div`
-  width: 50%;
+  width: 60%;
+  margin-right: 10%;
+  
+  @media(max-width: 415px) {
+    width: 100%;
+    margin: 0;
+  }
 `
 
-const AddNewProgram = () => {
+const Button = styled.input`
+  display: block;
+  background-color: transparent;
+  border: 2px solid black;
+  padding: 5px 10px;
+  font-size: 18px;
+  transition: .3s;
+  
+  &:hover{
+    background-color: mediumseagreen;
+  }
+`
 
-    const [isAddVisible, setIsAddVisible] = useState(true);
+const AddNewProgram = props => {
+
     const [sent, setSent] = useState(false);
     const [selectedOption, setSelectedOption] = useState({
         value: "",
@@ -85,22 +123,7 @@ const AddNewProgram = () => {
     const [newItem, setNewItem] = useState(defaultObject);
     const [category, setCategory] = useState(defaultCategory);
 
-    const handleAddVisible = option => {
-        switch (option) {
-            case 1:
-                setIsAddVisible(!isAddVisible);
-                break;
-            case 2:
-                console.log('jeszcze nie ma');
-                break;
-            case 3:
-                console.log('jeszcze nie ma');
-                break;
-            default:
-                console.log('Błędna wartość');
-                break;
-        }
-    }
+    const { addVisible } = useContext(AdminContext);
 
     const clearObj = () => {
         setNewItem(defaultObject);
@@ -136,18 +159,14 @@ const AddNewProgram = () => {
         e.preventDefault();
 
         sendData(category);
-        setSent(true);
+        setSent(true); //add set interval
         // clearObj();
         console.log(category);
     }
 
     return(
-      <Wrapper>
-          <Header onClick={() => handleAddVisible(1)}> Dodaj nowe narzędzie </Header>
-          <Header>Podgląd</Header>
-          <Header>Przeglądaj proponowane</Header>
-
-          <Form isVisible={isAddVisible} onSubmit={submit}>
+      <Wrapper isVisible={addVisible}>
+          <Form onSubmit={submit}>
               <LeftSide>
                   <Description>Kategoria</Description>
                   <SuperSelect
@@ -172,7 +191,7 @@ const AddNewProgram = () => {
                   />
 
                   <Description>Logo</Description>
-                  <Input type="file" />
+                  <Input type="text" />
 
                   <Description>Darmowy</Description>
                   <Checkbox
@@ -186,6 +205,7 @@ const AddNewProgram = () => {
               <RightSide>
                   <Description>Opis po polsku</Description>
                   <Textarea
+                      placeholder="Opis"
                       name="descriptionPL"
                       value={newItem.descriptionPL}
                       onChange={handleInput}
@@ -193,16 +213,18 @@ const AddNewProgram = () => {
 
                   <Description>Opis po angielsku</Description>
                   <Textarea
+                      placeholder="Description"
                       name="descriptionENG"
                       value={newItem.descriptionENG}
                       onChange={handleInput}
                   />
 
                   <Description>Tagi</Description>
-                  <TagsInput/>
+                    <p>tba</p>
+                  {/*<TagsInput/>*/}
 
               </RightSide>
-              <input type="submit" value="Dodaj"/>
+              <Button type="submit" value="Dodaj"/>
               {sent && <p>Poprawnie wysłano</p>}
           </Form>
       </Wrapper>
