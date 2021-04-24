@@ -1,13 +1,16 @@
 import React, {useState, useContext} from "react";
+
+import Select from "react-select";
 import styled from "styled-components";
 
-import { v4 as uuidv4 } from 'uuid';
-import Select from "react-select";
-
 import TagsInput from "./TagsInput";
-import {defaultCategory, defaultObject, testOptions, sendData} from "./services";
-import {AdminContext} from "../../context/AdminContext";
 import Preview from "./Preview";
+
+import {defaultCategory, defaultObject, sendData} from "./services";
+import {AdminContext} from "../../context/AdminContext";
+import {AppContext} from "../../context/AppContext";
+import { validURL } from "./validation";
+
 
 const Wrapper = styled.div`
   margin-top: 20px;
@@ -50,19 +53,18 @@ const Checkbox = styled.input`
 `
 
 const Textarea = styled.textarea`
+  font-family: 'Lexend', sans-serif;
   resize: none;
   display: block;
   padding: 5px 10px;
   margin-top: 10px;
   height: 100px;
   width: 225px;
-  //border: none;
-  //box-shadow: -8px -8px 0px -6px rgba(0,0,0,0.75);
+  font-size: 16px;
   border: 2px solid black;
   outline: none;
   
   &:focus{
-    //box-shadow: -8px -8px 0px -6px darkcyan;
     border-color: darkcyan;
   }
 `
@@ -119,21 +121,63 @@ const Button = styled.input`
   }
 `
 
+const ErrorMsg = styled.p`
+  text-align: left;
+  padding: 15px 80px;
+  font-weight: bolder;
+  font-size: 18px;
+  color: red;
+  margin-bottom: -40px;
+`
+
 const AddNewProgram = () => {
 
+    const { addVisible } = useContext(AdminContext);
+    const { globalLanguage } = useContext(AppContext);
     const [sent, setSent] = useState(false);
+    const [error, setError] = useState("");
+
     const [selectedOption, setSelectedOption] = useState({
         value: "",
         valuePL: ""
     });
 
-    //selectCategories - load from server
-    const options = testOptions;
+    let Select = globalLanguage.Admin.Select;
+
+    const options = [
+        { value: 'UI Graphics', label: `${Select.uiGraphics}`, valuePL: 'Grafika UI'},
+        { value: 'fonts', label: `${Select.fonts}`, valuePL: 'Czcionki'},
+        { value: 'Colors', label: `${Select.colors}`, valuePL: 'Kolory'},
+        { value: 'Icons', label: `${Select.icons}`, valuePL: 'Ikony'},
+        { value: 'Logos', label: `${Select.logos}`, valuePL: 'Loga'},
+        { value: 'Favicons', label: `${Select.favicons}`, valuePL: 'Favikony'},
+        { value: 'Icon Fonts', label: `${Select.iconFonts}`, valuePL: 'Czcionki ikonowe'},
+        { value: 'Stock Photos', label: `${Select.stockPhotos}`, valuePL: 'Zdjęcia'},
+        { value: 'Stock Videos', label: `${Select.stockVideos}`, valuePL: 'Filmy'},
+        { value: 'Stock Music & Sound Effects', label: `${Select.music}`, valuePL: 'Muzyka i efekty dźwiękowe'},
+        { value: 'Vectors & Clipart', label: `${Select.vectors}`, valuePL: 'Wektory i kliparty'},
+        { value: 'HTML & CSS Templates', label: `${Select.webTemplates}`, valuePL: 'Szablony HTML i CSS'},
+        { value: 'CSS Frameworks', label: `${Select.cssFrameworks}`, valuePL: 'Frameworki CSS'},
+        { value: 'CSS Methodologies', label: `${Select.cssMethodologies}`, valuePL: 'Metodologie CSS'},
+        { value: 'CSS Animations', label: `${Select.cssAnimations}`, valuePL: 'Animacje CSS'},
+        { value: 'Javascript Animations', label: `${Select.jsAnimations}`, valuePL: 'Animacje JavaScript'},
+        { value: 'UI Components & Kits', label: `${Select.uiComponents}`, valuePL: 'Komponenty UI'},
+        { value: 'React UI Libraries', label: `${Select.reactUiLibs}`, valuePL: 'Biblioteki UI React'},
+        { value: 'Vue UI Libraries', label: `${Select.vueUiLibs}`, valuePL: 'Biblioteki UI Vue'},
+        { value: 'Angular UI Libraries', label: `${Select.angularUiLibs}`, valuePL: 'Biblioteki UI Angular'},
+        { value: 'Svelte UI Libraries', label: `${Select.svelteUiLibs}`, valuePL: 'Biblioteki UI Svelte'},
+        { value: 'React Native UI Libraries', label: `${Select.reactNativeUiLibs}`, valuePL: 'Biblioteki UI React Native'},
+        { value: 'Design Systems & Style Guides', label: `${Select.designSystems}`, valuePL: 'Systemy projektowania'},
+        { value: 'Online Design Tools', label: `${Select.designTools}`, valuePL: 'Narzędzia do projektowania online'},
+        { value: 'Downloadable Design Software', label: `${Select.downloadDesignTools}`, valuePL: 'Pobieralne narzędzia do projektowania'},
+        { value: 'Design Inspiration', label: `${Select.designInspirations}`, valuePL: 'Inspiracje projektowe'},
+        { value: 'Image Compression', label: `${Select.imgCompression}`, valuePL: 'Kompresja obrazów'},
+        { value: 'Chrome Extensions', label: `${Select.chromeExtensions}`, valuePL: 'Rozszerzenia do chrome'},
+        { value: 'Others', label: `${Select.others}`, valuePL: 'Inne'},
+    ]
 
     const [newItem, setNewItem] = useState(defaultObject);
     const [category, setCategory] = useState(defaultCategory);
-
-    const { addVisible } = useContext(AdminContext);
 
     const clearObj = () => {
         setNewItem(defaultObject);
@@ -149,13 +193,11 @@ const AddNewProgram = () => {
     }
 
     const categoryToAdd = selected => {
-
         setSelectedOption({
                 value: selected.value,
                 valuePL: selected.valuePL
             }
         );
-
         setCategory({
             typeENG: selected.value,
             typePL: selected.valuePL,
@@ -165,28 +207,55 @@ const AddNewProgram = () => {
         })
     }
 
+    const validate = () => {
+        if (!selectedOption.value){
+            setError("Nie wybrano kategorii");
+            return false;
+        }
+        if (!newItem.name){
+            setError("Brak nazwy");
+            return false;
+        }
+        if (!newItem.descriptionPL){
+            setError("Brak polskiego opis");
+            return false
+        }
+        if (!newItem.link || !validURL(newItem.link)){
+            setError("Niepoprawny link");
+            return false
+        }
+        setError("");
+        return true;
+    }
+
     const submit = e => {
         e.preventDefault();
+        if (validate()){
+            console.log('wysyłam na serwer');
+            sendData(category);
+            clearObj();
+        } else {
+            console.log("Wysyłanie nie powiodło się");
+        }
 
-        sendData(category);
-        setSent(true); //add set interval
-        // clearObj();
+        // setSent(true); //add set interval
         console.log(category);
     }
 
     return(
       <Wrapper isVisible={addVisible}>
           <Preview item={newItem}/>
+          <ErrorMsg>{error && error}</ErrorMsg>
 
           <Form onSubmit={submit}>
               <LeftSide>
-                  <Description>Kategoria</Description>
+                  <Description>{globalLanguage.Admin.category}</Description>
                   <SuperSelect
                       options={options}
                       onChange={categoryToAdd}
                   />
 
-                  <Description>Nazwa</Description>
+                  <Description>{globalLanguage.Admin.name}</Description>
                   <Input
                       type="text"
                       name="name"
@@ -194,7 +263,7 @@ const AddNewProgram = () => {
                       onChange={handleInput}
                   />
 
-                  <Description>Adres strony</Description>
+                  <Description>{globalLanguage.Admin.link}</Description>
                   <Input
                       type="text"
                       name="link"
@@ -205,7 +274,7 @@ const AddNewProgram = () => {
                   <Description>Logo</Description>
                   <Input type="text" />
 
-                  <Description>Darmowy</Description>
+                  <Description>{globalLanguage.Admin.price}</Description>
                   <Checkbox
                       type="checkbox"
                       name="price"
@@ -215,7 +284,7 @@ const AddNewProgram = () => {
 
               </LeftSide>
               <RightSide>
-                  <Description>Opis po polsku</Description>
+                  <Description>{globalLanguage.Admin.descPL}</Description>
                   <Textarea
                       placeholder="Opis"
                       name="descriptionPL"
@@ -223,7 +292,7 @@ const AddNewProgram = () => {
                       onChange={handleInput}
                   />
 
-                  <Description>Opis po angielsku</Description>
+                  <Description>{globalLanguage.Admin.descENG}</Description>
                   <Textarea
                       placeholder="Description"
                       name="descriptionENG"
@@ -231,12 +300,12 @@ const AddNewProgram = () => {
                       onChange={handleInput}
                   />
 
-                  <Description>Tagi</Description>
-                    <p>tba</p>
-                  {/*<TagsInput/>*/}
+                  <Description>{globalLanguage.Admin.tags}</Description>
+                    {/*<p>tba</p>*/}
+                  <TagsInput/>
 
               </RightSide>
-              <Button type="submit" value="Dodaj"/>
+              <Button type="submit" value={globalLanguage.Admin.submitBtt}/>
               {sent && <p>Poprawnie wysłano</p>}
           </Form>
       </Wrapper>

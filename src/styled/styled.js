@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 
-import pl from '../images/pl.png';
-import eng from  '../images/eng.png';
-
 export const SuperLink = styled(Link)`
   text-decoration: none;
   color: ${props => props.theme.colors.text};
@@ -16,17 +13,25 @@ export const SuperLink = styled(Link)`
 `
 //Language icon
 export const Icon = styled.div`
-  background-image: url(${props => props.isEnglish ? pl : eng});
+  background-image: url(${props => window.location.origin + props.langImg});
   background-size: contain;
+  background-repeat: no-repeat;
   display: inline-block;
   height: 40px;
   width: 40px;
-  margin-left: -10px;
+  transition: .3s;
+  
+  &:hover{
+    transform: scale(1.2);
+  }
+  
   
   @media(max-width: 730px){
     height: 60px;
     width: 60px;
   }
+  
+  
 `
 
 //List

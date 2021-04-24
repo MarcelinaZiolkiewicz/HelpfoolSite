@@ -5,8 +5,6 @@ import styled from "styled-components";
 import {ButtonElement, ListWrapper, Label, InfoText, SmallerLabel, SubpagesWrapper} from "../styled/styled";
 import {AppContext} from "../context/AppContext";
 
-import { language } from '../language';
-
 import link from '../images/link.png';
 import pl from '../images/pl.png';
 import eng from  '../images/eng.png';
@@ -46,24 +44,25 @@ const ResourcesList = styled.div`
 const About = () => {
 
     const { isEnglish } = useContext(AppContext);
+    const { globalLanguage } = useContext(AppContext);
 
     return(
         <SubpagesWrapper>
-            <Label>{isEnglish ? language.english.About.about : language.polish.About.about}</Label>
+            <Label>{globalLanguage.About.about}</Label>
             <InfoText>
-                {isEnglish ? language.english.About.aboutMessage : language.polish.About.aboutMessage}
+                {globalLanguage.About.aboutMessage}
             </InfoText>
 
             <Label>
-                {isEnglish ? language.english.About.resourcesLabel : language.polish.About.resourcesLabel}
+                {globalLanguage.About.resourcesLabel}
             </Label>
             <InfoText>
-                {isEnglish ? language.english.About.resourcesText : language.polish.About.resourcesText}
+                {globalLanguage.About.resourcesText}
             </InfoText>
 
             <ResourcesList>
                 <SmallerLabel>
-                    {isEnglish ? language.english.About.resourceIcons : language.polish.About.resourceIcons}
+                    {globalLanguage.About.resourceIcons}
                 </SmallerLabel>
 
                 <ListWrapper>
@@ -94,12 +93,12 @@ const About = () => {
                 </ListWrapper>
                 {/*Źródło*/}
                 <SmallerLabel>
-                    {isEnglish ? language.english.About.resourceSource : language.polish.About.resourceSource}
+                    {globalLanguage.About.resourceSource}
                 </SmallerLabel>
                 <ListWrapper>
                     <ButtonElement>
                         <Link href="https://github.com/bradtraversy/design-resources-for-developers" target="_blank">
-                            {isEnglish ? "Resource list" : "Lista zasobów"}
+                            {globalLanguage.About.resource}
                         </Link>
                     </ButtonElement>
                 </ListWrapper>

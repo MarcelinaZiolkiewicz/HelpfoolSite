@@ -1,6 +1,7 @@
 import React, {useContext} from  'react';
 import styled from "styled-components";
 import {AdminContext} from "../../context/AdminContext";
+import {AppContext} from "../../context/AppContext";
 
 
 const Button = styled.button`
@@ -25,12 +26,13 @@ const Button = styled.button`
 const AdminButtons = () => {
 
     const {handleAddVisible} = useContext(AdminContext);
+    const {globalLanguage} = useContext(AppContext);
 
     return(
         <div>
-            <Button onClick={() => handleAddVisible(1)}> Dodaj nowe narzędzie </Button>
-            <Button onClick={() => handleAddVisible(2)}> Podgląd </Button>
-            <Button onClick={() => handleAddVisible(3)}> Przeglądaj proponowane </Button>
+            <Button onClick={() => handleAddVisible(1)}> {globalLanguage.Admin.addBtt} </Button>
+            <Button onClick={() => handleAddVisible(2)}> {globalLanguage.Admin.previewBtt} </Button>
+            <Button onClick={() => handleAddVisible(3)}> {globalLanguage.Admin.proposedBtt} </Button>
         </div>
     );
 }

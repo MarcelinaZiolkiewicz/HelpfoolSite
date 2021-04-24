@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import styled from "styled-components";
 
 import {AdminContext} from "../../context/AdminContext";
+import {AppContext} from "../../context/AppContext";
 
 
 const Text = styled.h3`
@@ -24,7 +25,7 @@ const Logout = styled.button`
   transition: .3s;
   
   &:hover{
-    background-color: black;
+    background-color: #ff5e57;
     color: white;
   }
 `
@@ -32,11 +33,12 @@ const Logout = styled.button`
 const Header = () => {
 
     const { handleLogout } = useContext(AdminContext);
+    const { globalLanguage } = useContext(AppContext);
 
     return(
         <div>
-            <Text>Panel admina</Text>
-            <Logout onClick={handleLogout}>Wyloguj</Logout>
+            <Text>{globalLanguage.Admin.adminLabel}</Text>
+            <Logout onClick={handleLogout}>{globalLanguage.Admin.logout}</Logout>
         </div>
     )
 }

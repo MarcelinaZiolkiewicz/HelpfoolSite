@@ -40,9 +40,3 @@ export const defaultCategory = {
         defaultObject
     ]
 }
-
-export const testOptions = [
-    { value: 'design', label: 'Design', valuePL: 'projektowanie'},
-    { value: 'fonts', label: 'Fonts', valuePL: 'czcionki'},
-    { value: 'animations', label: 'Animations', valuePL: 'animacje'}
-]

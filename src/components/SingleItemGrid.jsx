@@ -153,7 +153,8 @@ const ItemName = styled.p`
 
 const SingleItem = ({item}) => {
 
-    const { isEnglish } = useContext(AppContext);
+    const { isEnglish, globalLanguage } = useContext(AppContext);
+
 
     const OpenLink = myUrl => {
         console.log(myUrl);
@@ -161,21 +162,34 @@ const SingleItem = ({item}) => {
         newWindow.focus();
     }
 
-    const ItemPrice = (item) => {
-        if (item){
-            return isEnglish ? "Free" : "Darmowy";
+    const langType = item => {
+        if (globalLanguage.lang === 'PL'){
+            return item.descriptionPL
         }
-        return isEnglish ? "Paid" : "Płatny";
+        else if(globalLanguage.lang === 'ENG'){
+            return item.descriptionENG
+        }
+    }
+
+    const ItemPrice = price => {
+        if (price){
+            if (globalLanguage.lang === 'PL') return "Darmowy";
+            else if(globalLanguage.lang === 'ENG') return "Free";
+        }
+        else {
+            if (globalLanguage.lang === 'PL') return "Płatny";
+            else if(globalLanguage.lang === 'ENG') return "Paid";
+        }
     }
 
     return(
       <ListItem>
           <Logo path={window.location.origin + item.img} />
           <ItemName>{item.name}</ItemName>
-          <Description>{isEnglish ? item.descriptionENG : item.descriptionPL}</Description>
+          <Description>{langType(item)}</Description>
           <Price price={item.price}>{ItemPrice(item.price)}</Price>
           <GetIt onClick={() => OpenLink(item.link)}>
-              {isEnglish ? 'Get it here' : 'Przejdź' }
+              {globalLanguage.getItHere}
               <Icon/>
           </GetIt>
       </ListItem>

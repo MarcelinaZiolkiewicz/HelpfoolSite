@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
 const MainSite = () => {
 
-    const { messageVisibility, isEnglish } = useContext(AppContext);
+    const { messageVisibility, globalLanguage } = useContext(AppContext);
 
     const [myData, setMyData] = useState({toolsList: []});
     const [errorMessage, setErrorMessage] = useState("");
@@ -58,7 +58,7 @@ const MainSite = () => {
 
     return(
         <Wrapper>
-            { messageVisibility && <Message message={isEnglish ? language.english.mainMsg : language.polish.mainMsg}/>}
+            { messageVisibility && <Message message={globalLanguage.mainMsg}/>}
             {/*<SortBar/>*/}
             {items}
             {/*{renderCategories}*/}

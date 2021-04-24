@@ -1,5 +1,7 @@
 import React, { createContext, useState } from 'react';
 
+import { language } from '../language';
+
 export const AppContext = createContext();
 
 const AppProvider = props => {
@@ -10,9 +12,27 @@ const AppProvider = props => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const [messageVisibility, setMessageVisibility] = useState(true);
 
+    const [globalLanguage, setGlobalLanguage] = useState(language.english);
+
     const handleChangeLanguage = () => {
         setIsEnglish(!isEnglish);
     }
+
+    const handleSetLanguage = lang => {
+        switch (lang) {
+            case 1:
+                setGlobalLanguage(language.polish);
+                break;
+            case 2:
+                setGlobalLanguage(language.english);
+                break;
+            default:
+                console.log('Error');
+                break;
+        }
+    }
+
+
     const handleMenuOpen = () => {
         if (!isMenuOpen){
             setScrollPosition(window.pageYOffset);
@@ -41,11 +61,13 @@ const AppProvider = props => {
         isEnglish,
         isMenuOpen,
         messageVisibility,
+        globalLanguage,
         handleChangeLanguage,
         handleMenuOpen,
         handleThemeChange,
         handleBackToTop,
-        handleCloseMessage
+        handleCloseMessage,
+        handleSetLanguage
     }
 
     return(

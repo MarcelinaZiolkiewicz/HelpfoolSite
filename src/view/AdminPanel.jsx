@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
-import {Redirect, Route} from "react-router-dom";
 import {AdminContext} from "../context/AdminContext";
+import {Redirect, Route} from "react-router-dom";
+
 import AddNewProgram from "../components/administartorPanel/AddNewProgram";
-import Header from "../components/administartorPanel/Header";
 import AdminButtons from "../components/administartorPanel/AdminButtons";
-import Preview from "../components/administartorPanel/Preview";
+import Header from "../components/administartorPanel/Header";
+
 
 
 const Wrapper = styled.div`
