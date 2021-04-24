@@ -6,6 +6,7 @@ import {AdminContext} from "../context/AdminContext";
 import AddNewProgram from "../components/administartorPanel/AddNewProgram";
 import Header from "../components/administartorPanel/Header";
 import AdminButtons from "../components/administartorPanel/AdminButtons";
+import Preview from "../components/administartorPanel/Preview";
 
 
 const Wrapper = styled.div`

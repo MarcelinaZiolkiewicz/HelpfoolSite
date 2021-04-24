@@ -20,10 +20,10 @@ export const sendData = item => {
 }
 
 export const defaultObject = {
-    itemName: "",
+    name: "",
     link: "",
     logo: "",
-    paid: true,
+    price: true,
     descriptionPL: "",
     descriptionENG: "",
     id: uuidv4(),

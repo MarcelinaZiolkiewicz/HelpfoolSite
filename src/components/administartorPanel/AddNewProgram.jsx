@@ -7,6 +7,7 @@ import Select from "react-select";
 import TagsInput from "./TagsInput";
 import {defaultCategory, defaultObject, testOptions, sendData} from "./services";
 import {AdminContext} from "../../context/AdminContext";
+import Preview from "./Preview";
 
 const Wrapper = styled.div`
   margin-top: 20px;
@@ -64,8 +65,6 @@ const Textarea = styled.textarea`
     //box-shadow: -8px -8px 0px -6px darkcyan;
     border-color: darkcyan;
   }
-  
-  
 `
 
 const Form = styled.form`
@@ -80,6 +79,11 @@ const Form = styled.form`
 
 const LeftSide = styled.div`
   width: 30%;
+
+  @media(max-width: 1250px){
+    width: 50%;
+    margin: 0;
+  }
   
   @media(max-width: 415px) {
     width: 100%;
@@ -90,7 +94,12 @@ const RightSide = styled.div`
   width: 60%;
   margin-right: 10%;
   
-  @media(max-width: 415px) {
+  @media(max-width: 1250px){
+    width: 50%;
+    margin: 0;
+  }
+  
+  @media(max-width: 700px) {
     width: 100%;
     margin: 0;
   }
@@ -105,11 +114,12 @@ const Button = styled.input`
   transition: .3s;
   
   &:hover{
-    background-color: mediumseagreen;
+    background-color: black;
+    color: white;
   }
 `
 
-const AddNewProgram = props => {
+const AddNewProgram = () => {
 
     const [sent, setSent] = useState(false);
     const [selectedOption, setSelectedOption] = useState({
@@ -166,6 +176,8 @@ const AddNewProgram = props => {
 
     return(
       <Wrapper isVisible={addVisible}>
+          <Preview item={newItem}/>
+
           <Form onSubmit={submit}>
               <LeftSide>
                   <Description>Kategoria</Description>
@@ -177,8 +189,8 @@ const AddNewProgram = props => {
                   <Description>Nazwa</Description>
                   <Input
                       type="text"
-                      name="itemName"
-                      value={newItem.itemName}
+                      name="name"
+                      value={newItem.name}
                       onChange={handleInput}
                   />
 
@@ -196,8 +208,8 @@ const AddNewProgram = props => {
                   <Description>Darmowy</Description>
                   <Checkbox
                       type="checkbox"
-                      name="paid"
-                      checked={newItem.paid}
+                      name="price"
+                      checked={newItem.price}
                       onChange={handleInput}
                   />
 
