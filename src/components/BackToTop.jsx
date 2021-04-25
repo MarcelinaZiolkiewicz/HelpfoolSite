@@ -12,9 +12,10 @@ const BackButton = styled.div`
   right: 2rem;
   background-color: #b2bec3;
   border-radius: 25px;
-  display: flex;
+  display: ${props => props.isVisible ? 'flex' : 'none'};
   align-items: center;
   transition: .3s;
+  opacity: .7;
   
   &:hover{
     transform: scale(1.1);
@@ -34,10 +35,10 @@ const Icon = styled.div`
 
 const BackToTop = () => {
 
-    const { handleBackToTop } = useContext(AppContext);
+    const { handleBackToTop, scrollVisible } = useContext(AppContext);
 
     return(
-        <BackButton onClick={handleBackToTop}>
+        <BackButton onClick={handleBackToTop} isVisible={scrollVisible}>
             <Icon/>
         </BackButton>
     );

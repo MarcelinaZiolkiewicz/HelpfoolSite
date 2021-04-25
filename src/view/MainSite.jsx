@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
 
 import {toolsList} from "../toolsList";
-import {language} from '../language';
 import {AppContext} from "../context/AppContext";
 
 import Category from "../components/Category";
@@ -15,7 +14,11 @@ const Wrapper = styled.div`
   background-color: #FFFFFF;
   margin: 10vh auto 0 auto;
   
-  @media(max-width: 730px){
+  @media(max-width: 1200px){
+    width: 95vw;
+  }
+  
+  @media(max-width: 850px){
     width: 100vw;
     margin-top: 5vh;
   }
@@ -52,9 +55,8 @@ const MainSite = () => {
        <Category item={item} />
     ));
 
-    // useEffect(() => {
-    //     getData();
-    // }, []);
+
+
 
     return(
         <Wrapper>

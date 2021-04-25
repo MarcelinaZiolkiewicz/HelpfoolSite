@@ -6,17 +6,21 @@ import {AppContext} from "../context/AppContext";
 
 const ListItem = styled.div`
   display: grid;
-  grid-template-columns: 3fr 10fr 20fr 6fr 10fr 5fr;
+  grid-template-columns: 2fr 10fr 20fr 6fr 10fr auto;
   background-color: #F5F7F5;
   list-style: none;
   padding: 15px 10px;
-  max-height: 65px;
+  max-height: unset;
   
   &:nth-of-type(even){
     background-color: #E4E4E4;
+    
+    p:nth-child(even){
+      border-color: #757575;
+    }
   }
   
-  @media(max-width: 415px){
+  @media(max-width: 525px){
     grid-template-columns: 3fr 2fr;
     grid-template-rows: auto;
     grid-template-areas: 
@@ -33,20 +37,17 @@ const Logo = styled.div`
   background-image: url("${props => props.path}");
   background-size: contain;
   background-repeat: no-repeat;
-  margin-left: 20px;
+  margin-left: 10px;
   height: 50px;
   width: 50px;
   
   @media(max-width: 730px){
-    position: relative;
-    top: 10px;
-    left: 10px;
+
     height: 30px;
     width: 30px;
-    
   }
   
-  @media(max-width: 415px){
+  @media(max-width: 525px){
     display: none;
   }
 `
@@ -56,16 +57,17 @@ const Description = styled.p`
   height: 50px;
   text-align: left;
   color: black;
-  font-size: 16px;
+  font-size: 18px;
+  padding: 0 10px 0 10px;
   
-  @media(max-width: 730px){
-    font-size: 14px;
+  @media(max-width: 800px){
+    font-size: 16px;
     padding: 10px 10px;
     text-align: center;
     height: unset;
   }
   
-  @media(max-width: 415px){
+  @media(max-width: 525px){
     grid-area: middle;
     font-size: 16px;
   }
@@ -80,7 +82,7 @@ const Price = styled.p`
   border-right: 2px solid #E0E0E0;
   text-align: center;
   
-  @media(max-width: 415px){
+  @media(max-width: 525px){
     grid-area: price;
     border-left: 2px solid #757575;
     border-right: none;
@@ -90,7 +92,7 @@ const Price = styled.p`
 
 const GetIt = styled.button`
   font-family: 'Lexend', sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
   color: black;
   background-color: transparent;
@@ -103,12 +105,12 @@ const GetIt = styled.button`
     transform: scale(1.2);
   }
 
-  @media(max-width: 730px){
+  @media(max-width: 750px){
     font-size: 16px;
     line-height: 60px;
   }
 
-  @media(max-width: 415px){
+  @media(max-width: 525px){
     grid-area: bottom;
     font-size: 18px;
 
@@ -135,13 +137,17 @@ const ItemName = styled.p`
   margin-left: 40px;
   padding: 10px 25px 10px 0;
   border-right: 2px solid #E0E0E0;
-
-  @media(max-width: 730px){
+  
+  @media(max-width: 1050px){
+    font-size: 20px;
+  }
+  
+  @media(max-width: 800px){
     font-size: 18px;
     
   }
   
-  @media(max-width: 415px){
+  @media(max-width: 525px){
     grid-area: name;
     font-size: 22px;
     padding: 5px 25px 5px 0;
@@ -150,6 +156,13 @@ const ItemName = styled.p`
     margin-left: 0px;
   }
 `
+
+const CenterImg = styled.div`
+  display: flex;
+  justify-items: center;
+  align-items: center;
+`
+
 
 const SingleItem = ({item}) => {
 
@@ -184,13 +197,14 @@ const SingleItem = ({item}) => {
 
     return(
       <ListItem>
-          <Logo path={window.location.origin + item.img} />
+          <CenterImg>
+              <Logo path={window.location.origin + item.img} />
+          </CenterImg>
           <ItemName>{item.name}</ItemName>
           <Description>{langType(item)}</Description>
           <Price price={item.price}>{ItemPrice(item.price)}</Price>
           <GetIt onClick={() => OpenLink(item.link)}>
               {globalLanguage.getItHere}
-              <Icon/>
           </GetIt>
       </ListItem>
     );

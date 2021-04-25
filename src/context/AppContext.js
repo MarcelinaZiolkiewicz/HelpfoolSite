@@ -11,6 +11,8 @@ const AppProvider = props => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
     const [messageVisibility, setMessageVisibility] = useState(true);
+    const [scrollVisible, setScrollVisible] = useState(false);
+
 
     const [globalLanguage, setGlobalLanguage] = useState(language.english);
 
@@ -52,6 +54,18 @@ const AppProvider = props => {
         })
     }
 
+    window.onscroll = function () {scroll()};
+
+    const scroll = () => {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            setScrollVisible(true);
+        }
+        else{
+            setScrollVisible(false);
+        }
+    }
+
+
     const handleCloseMessage = () => {
         setMessageVisibility(!messageVisibility);
     }
@@ -62,6 +76,7 @@ const AppProvider = props => {
         isMenuOpen,
         messageVisibility,
         globalLanguage,
+        scrollVisible,
         handleChangeLanguage,
         handleMenuOpen,
         handleThemeChange,
