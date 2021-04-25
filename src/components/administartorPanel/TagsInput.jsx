@@ -7,8 +7,9 @@ const Tag = styled.p`
 `
 
 const Wrapper = styled.div`
-  width: 300px;
-  height: 120px;
+  margin-top: 10px;
+  width: 225px;
+  height: 100px;
   border: 2px solid black;
   padding: 10px 10px;
 `
@@ -20,7 +21,7 @@ const Input = styled.input`
   outline: none;
   font-size: 16px;
   margin-left: 10px;
-  width: ${props => (props.value.length + 1) * 8}px;
+  width: ${props => (props.value.length + 2) * 8 + 'px'};
 `
 const Btt = styled.button`
   background-color: transparent;
@@ -28,12 +29,10 @@ const Btt = styled.button`
   outline: none;
 `
 
-
 const TagsInput = () => {
 
     const [tagsList, setTagsList ] = useState([]);
-    const [singleTag, setSingleTag] = useState("#");
-
+    const [singleTag, setSingleTag] = useState("");
 
     const inpt = useRef(null)
 
@@ -48,23 +47,19 @@ const TagsInput = () => {
     }
 
     const addTag = () => {
-        tagsList.push(singleTag);
-        setSingleTag("#");
-        console.log(tagsList);
+        if (singleTag.length > 3){
+            tagsList.push(`#${singleTag}`);
+            setSingleTag("");
+        }
     }
 
     const focusInput = () => {
         inpt.current.focus();
     }
 
-    function onKeyDown (e) {
-        if (e.keyCode === 8){
-            setTagsList(tagsList.splice(-1, 1));
-            console.log(tagsList);
-        }
-
+    const onKeyDown = e => {
+        if (e.keyCode === 8 && inpt.current.value === "") setTagsList(tagsList.splice(0, tagsList.length - 1));
     }
-
 
     return(
         <Wrapper onClick={focusInput}>

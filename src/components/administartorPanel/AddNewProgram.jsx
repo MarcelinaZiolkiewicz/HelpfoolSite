@@ -1,4 +1,5 @@
 import React, {useState, useContext} from "react";
+import {v4 as uuidv4} from "uuid";
 
 import Select from "react-select";
 import styled from "styled-components";
@@ -19,7 +20,7 @@ const Wrapper = styled.div`
 
 const SuperSelect = styled(Select)`
   margin-top: 10px;
-  width: 200px;
+  width: 225px;
 `
 
 const Description = styled.label`
@@ -114,6 +115,8 @@ const Button = styled.input`
   padding: 5px 10px;
   font-size: 18px;
   transition: .3s;
+  margin-top: 20px;
+  max-width: 250px;
   
   &:hover{
     background-color: black;
@@ -201,6 +204,7 @@ const AddNewProgram = () => {
         setCategory({
             typeENG: selected.value,
             typePL: selected.valuePL,
+            id: uuidv4(),
             tools: [
                 newItem
             ]
@@ -301,7 +305,6 @@ const AddNewProgram = () => {
                   />
 
                   <Description>{globalLanguage.Admin.tags}</Description>
-                    {/*<p>tba</p>*/}
                   <TagsInput/>
 
               </RightSide>
