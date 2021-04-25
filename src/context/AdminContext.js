@@ -12,7 +12,6 @@ const AdminProvider = props => {
     const [ previewVisible, setPreviewVisible ] = useState(true);
     // const [ addVisible, setAddVisible ] = useState(false);
 
-
     const handleLoginInput = e => {
         setLogin(e.target.value);
     }
@@ -70,7 +69,6 @@ const AdminProvider = props => {
         handleLoginInput,
         handlePasswordInput,
         handleAddVisible,
-
     }
 
     return(

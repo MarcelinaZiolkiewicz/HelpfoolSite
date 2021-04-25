@@ -1,14 +1,13 @@
-import React, {useState, useContext} from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
-import {AdminContext} from "../../context/AdminContext";
 
 const Tag = styled.p`
   display: inline-block;
   padding-left: 10px;
+  padding-right: 10px;
   background-color: darkcyan;
   color: white;
   border-radius: 20px;
-  padding-right: 10px;
   margin: 5px 5px 0 0;
 `
 
@@ -16,13 +15,11 @@ const Wrapper = styled.div`
   margin-top: 10px;
   width: 290px;
   border: 2px solid black;
-  padding: 10px 10px;
-  
+  padding: 5px 10px 10px 10px;
   
   &:focus-within{
     border-color: darkcyan;
   }
-  
   
   @media(max-width: 420px){
     width: 225px;
@@ -38,20 +35,11 @@ const Input = styled.input`
   margin-left: 10px;
   width: ${props => (props.value.length + 2) * 8 + 'px'};
 `
-const Btt = styled.button`
-  background-color: transparent;
-  border: none;
-  outline: none;
-`
 
 const TagsInput = ({inpt}) => {
 
     const [tagsList, setTagsList ] = useState([]);
     const [singleTag, setSingleTag] = useState("");
-
-    const { setIsReadyToSend, isReadyToSend } = useContext(AdminContext);
-
-
 
     const renderTags = tags => {
         return tags.map(item => (

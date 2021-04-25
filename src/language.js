@@ -42,6 +42,12 @@ export const language = {
             descENG: "Opis po angielsku",
             tags: "Tagi",
             submitBtt: "Dodaj",
+            errCategory: "Nie wybrano kategorii",
+            errLink: "Niepoprawny link",
+            errDescPL: "Brak polskiego opisu",
+            errDescEng: "Brak angielskiego opisu",
+            errName: "Brak nazwy",
+            toolSent: "Udało się wysłać",
             Select: {
                 uiGraphics: "UI Graphics",
                 fonts: "Czcionki",
@@ -72,7 +78,7 @@ export const language = {
                 imgCompression: "Kompresja obrazów",
                 chromeExtensions: "Rozszerzenia do chrome",
                 others: "Inne",
-            }
+            },
         }
     },
     english: {
@@ -118,6 +124,12 @@ export const language = {
             descENG: "Description in english",
             tags: "Tags",
             submitBtt: "Add",
+            errCategory: "Category has not been selected",
+            errLink: "Invalid link",
+            errDescPL: "No polish description",
+            errDescEng: "No english description",
+            errName: "No name",
+            toolSent: "Successfully sent",
             Select: {
                 uiGraphics: "UI Graphics",
                 fonts: "Fonts",

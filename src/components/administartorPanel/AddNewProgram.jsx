@@ -126,20 +126,23 @@ const Button = styled.input`
   transition: .3s;
   margin-top: 20px;
   max-width: 250px;
+  font-weight: bolder;
   
   &:hover{
-    background-color: black;
+    background-color: #10ac84;
     color: white;
   }
 `
 
 const ErrorMsg = styled.p`
   text-align: left;
-  padding: 15px 80px;
+  padding: 15px 60px;
   font-weight: bolder;
   font-size: 18px;
-  color: red;
-  margin-bottom: -40px;
+  color: white;
+  margin-bottom: -30px;
+  margin-top: 30px;
+  background-color: #ff5e57;
 `
 
 const SendMsg = styled.p`
@@ -154,10 +157,10 @@ const SendMsg = styled.p`
 
 const AddNewProgram = () => {
 
-    const { addVisible, isReadyToSend, setIsReadyToSend } = useContext(AdminContext);
-
+    const { addVisible } = useContext(AdminContext);
     const { globalLanguage } = useContext(AppContext);
-    const [sent, setSent] = useState(false);
+
+    const [sentMsg, setSentMsg] = useState("");
     const [error, setError] = useState("");
 
     const [newItem, setNewItem] = useState(defaultObject);
@@ -236,19 +239,23 @@ const AddNewProgram = () => {
 
     const validate = () => {
         if (!selectedOption.value){
-            setError("Nie wybrano kategorii");
+            setError(globalLanguage.Admin.errCategory);
             return false;
         }
         if (!newItem.name){
-            setError("Brak nazwy");
+            setError(globalLanguage.Admin.errName);
             return false;
         }
         if (!newItem.descriptionPL){
-            setError("Brak polskiego opis");
+            setError(globalLanguage.Admin.errDescPL);
+            return false
+        }
+        if (!newItem.descriptionENG){
+            setError(globalLanguage.Admin.errDescPL);
             return false
         }
         if (!newItem.link || !validURL(newItem.link)){
-            setError("Niepoprawny link");
+            setError(globalLanguage.Admin.errLink);
             return false
         }
         setError("");
@@ -260,18 +267,22 @@ const AddNewProgram = () => {
         if (document.activeElement !== inpt.current)
         {
             if (validate()){
-                console.log('wysyłam na serwer');
-                setSent(true);
+                setSentMsg(globalLanguage.Admin.toolSent);
                 sendData(category);
                 clearObj();
+
+                window.setTimeout(() => {
+                    setSentMsg("");
+                }, 5000);
+
             } else {
-                console.log("Wysyłanie nie powiodło się");
+                // setSentMsg("Nie udało się wysłać");
             }
+
+
         }
 
-        window.setTimeout(() => {
-            setSent(false);
-        }, 5000);
+
 
     }
 
@@ -279,8 +290,8 @@ const AddNewProgram = () => {
       <Wrapper isVisible={addVisible}>
           <Preview item={newItem}/>
 
-          <ErrorMsg>{error && error}</ErrorMsg>
-          {sent && <SendMsg>Poprawnie wysłano</SendMsg>}
+          {error && <ErrorMsg>{error}</ErrorMsg>}
+          {sentMsg && <SendMsg>{sentMsg}</SendMsg>}
 
           <Form onSubmit={submit}>
               <FirstSection>
@@ -307,7 +318,7 @@ const AddNewProgram = () => {
                   />
 
                   <Description>Logo</Description>
-                  <Input type="text" />
+                  <Input type="file" />
 
                   <Description>{globalLanguage.Admin.price}</Description>
                   <Checkbox
