@@ -19,6 +19,10 @@ export const sendData = item => {
 
 }
 
+export const sendImage = img => {
+
+}
+
 export const defaultObject = {
     name: "",
     link: "",

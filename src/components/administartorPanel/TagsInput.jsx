@@ -1,17 +1,32 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useContext} from "react";
 import styled from "styled-components";
+import {AdminContext} from "../../context/AdminContext";
 
 const Tag = styled.p`
   display: inline-block;
   padding-left: 10px;
+  background-color: darkcyan;
+  color: white;
+  border-radius: 20px;
+  padding-right: 10px;
+  margin: 5px 5px 0 0;
 `
 
 const Wrapper = styled.div`
   margin-top: 10px;
-  width: 225px;
-  height: 100px;
+  width: 290px;
   border: 2px solid black;
   padding: 10px 10px;
+  
+  
+  &:focus-within{
+    border-color: darkcyan;
+  }
+  
+  
+  @media(max-width: 420px){
+    width: 225px;
+  }
 `
 
 const Input = styled.input`
@@ -29,12 +44,14 @@ const Btt = styled.button`
   outline: none;
 `
 
-const TagsInput = () => {
+const TagsInput = ({inpt}) => {
 
     const [tagsList, setTagsList ] = useState([]);
     const [singleTag, setSingleTag] = useState("");
 
-    const inpt = useRef(null)
+    const { setIsReadyToSend, isReadyToSend } = useContext(AdminContext);
+
+
 
     const renderTags = tags => {
         return tags.map(item => (
@@ -46,19 +63,16 @@ const TagsInput = () => {
         setSingleTag(e.target.value);
     }
 
-    const addTag = () => {
-        if (singleTag.length > 3){
-            tagsList.push(`#${singleTag}`);
-            setSingleTag("");
-        }
-    }
-
     const focusInput = () => {
         inpt.current.focus();
     }
 
     const onKeyDown = e => {
         if (e.keyCode === 8 && inpt.current.value === "") setTagsList(tagsList.splice(0, tagsList.length - 1));
+        if (e.keyCode === 13 && singleTag.length >= 3) {
+            tagsList.push(`#${singleTag}`);
+            setSingleTag("");
+        }
     }
 
     return(
@@ -71,7 +85,6 @@ const TagsInput = () => {
                 ref={inpt}
                 onKeyDown={onKeyDown}
             />
-            <Btt onClick={addTag}></Btt>
         </Wrapper>
     );
 }

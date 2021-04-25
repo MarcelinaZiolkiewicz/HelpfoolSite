@@ -6,10 +6,10 @@ const AdminProvider = props => {
 
     const [ login, setLogin ] = useState("");
     const [ password, setPassword ] = useState("");
-    const [ isAdminLogged, setIsAdminLogged] = useState(false);
+    const [ isAdminLogged, setIsAdminLogged] = useState(true);
 
-    const [ addVisible, setAddVisible ] = useState(false);
-    const [ previewVisible, setPreviewVisible ] = useState(false);
+    const [ addVisible, setAddVisible ] = useState(true);
+    const [ previewVisible, setPreviewVisible ] = useState(true);
     // const [ addVisible, setAddVisible ] = useState(false);
 
 
@@ -69,7 +69,8 @@ const AdminProvider = props => {
         handleLogout,
         handleLoginInput,
         handlePasswordInput,
-        handleAddVisible
+        handleAddVisible,
+
     }
 
     return(

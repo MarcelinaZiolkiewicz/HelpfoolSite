@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useRef} from "react";
 import {v4 as uuidv4} from "uuid";
 
 import Select from "react-select";
@@ -80,7 +80,7 @@ const Form = styled.form`
   }
 `
 
-const LeftSide = styled.div`
+const FirstSection = styled.section`
   width: 30%;
 
   @media(max-width: 1250px){
@@ -93,9 +93,9 @@ const LeftSide = styled.div`
   }
 `
 
-const RightSide = styled.div`
-  width: 60%;
-  margin-right: 10%;
+const SecondSection = styled.section`
+  width: 30%;
+  
   
   @media(max-width: 1250px){
     width: 50%;
@@ -105,6 +105,15 @@ const RightSide = styled.div`
   @media(max-width: 700px) {
     width: 100%;
     margin: 0;
+  }
+`
+
+const ThirdSection = styled.section`
+  width: 30%;
+  margin-right: 10%;
+  
+  @media(max-width: 1250px){
+    width: 100%;
   }
 `
 
@@ -133,19 +142,36 @@ const ErrorMsg = styled.p`
   margin-bottom: -40px;
 `
 
+const SendMsg = styled.p`
+  background-color: mediumseagreen;
+  font-size: 18px;
+  display: block;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bolder;
+  margin-top: 30px;
+`
+
 const AddNewProgram = () => {
 
-    const { addVisible } = useContext(AdminContext);
+    const { addVisible, isReadyToSend, setIsReadyToSend } = useContext(AdminContext);
+
     const { globalLanguage } = useContext(AppContext);
     const [sent, setSent] = useState(false);
     const [error, setError] = useState("");
+
+    const [newItem, setNewItem] = useState(defaultObject);
+
+    const [category, setCategory] = useState(defaultCategory);
+
+    const inpt = useRef(null);
+
+    let Select = globalLanguage.Admin.Select;
 
     const [selectedOption, setSelectedOption] = useState({
         value: "",
         valuePL: ""
     });
-
-    let Select = globalLanguage.Admin.Select;
 
     const options = [
         { value: 'UI Graphics', label: `${Select.uiGraphics}`, valuePL: 'Grafika UI'},
@@ -178,9 +204,6 @@ const AddNewProgram = () => {
         { value: 'Chrome Extensions', label: `${Select.chromeExtensions}`, valuePL: 'Rozszerzenia do chrome'},
         { value: 'Others', label: `${Select.others}`, valuePL: 'Inne'},
     ]
-
-    const [newItem, setNewItem] = useState(defaultObject);
-    const [category, setCategory] = useState(defaultCategory);
 
     const clearObj = () => {
         setNewItem(defaultObject);
@@ -234,25 +257,33 @@ const AddNewProgram = () => {
 
     const submit = e => {
         e.preventDefault();
-        if (validate()){
-            console.log('wysyłam na serwer');
-            sendData(category);
-            clearObj();
-        } else {
-            console.log("Wysyłanie nie powiodło się");
+        if (document.activeElement !== inpt.current)
+        {
+            if (validate()){
+                console.log('wysyłam na serwer');
+                setSent(true);
+                sendData(category);
+                clearObj();
+            } else {
+                console.log("Wysyłanie nie powiodło się");
+            }
         }
 
-        // setSent(true); //add set interval
-        console.log(category);
+        window.setTimeout(() => {
+            setSent(false);
+        }, 5000);
+
     }
 
     return(
       <Wrapper isVisible={addVisible}>
           <Preview item={newItem}/>
+
           <ErrorMsg>{error && error}</ErrorMsg>
+          {sent && <SendMsg>Poprawnie wysłano</SendMsg>}
 
           <Form onSubmit={submit}>
-              <LeftSide>
+              <FirstSection>
                   <Description>{globalLanguage.Admin.category}</Description>
                   <SuperSelect
                       options={options}
@@ -286,8 +317,8 @@ const AddNewProgram = () => {
                       onChange={handleInput}
                   />
 
-              </LeftSide>
-              <RightSide>
+              </FirstSection>
+              <SecondSection>
                   <Description>{globalLanguage.Admin.descPL}</Description>
                   <Textarea
                       placeholder="Opis"
@@ -303,13 +334,14 @@ const AddNewProgram = () => {
                       value={newItem.descriptionENG}
                       onChange={handleInput}
                   />
-
+              </SecondSection>
+              <ThirdSection>
                   <Description>{globalLanguage.Admin.tags}</Description>
-                  <TagsInput/>
+                  <TagsInput inpt={inpt}/>
 
-              </RightSide>
+              </ThirdSection>
+
               <Button type="submit" value={globalLanguage.Admin.submitBtt}/>
-              {sent && <p>Poprawnie wysłano</p>}
           </Form>
       </Wrapper>
     );
