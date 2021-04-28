@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import styled from "styled-components";
+import {AdminContext} from "../../context/AdminContext";
 
 const Tag = styled.p`
   display: inline-block;
@@ -38,8 +39,11 @@ const Input = styled.input`
 
 const TagsInput = ({inpt}) => {
 
-    const [tagsList, setTagsList ] = useState([]);
-    const [singleTag, setSingleTag] = useState("");
+
+    const {tagsList, singleTag, handleChangeTag, handleDeleteTag, handleAddNewTag} = useContext(AdminContext);
+
+    // const [tagsList, setTagsList ] = useState([]);
+    // const [singleTag, setSingleTag] = useState("");
 
     const renderTags = tags => {
         return tags.map(item => (
@@ -47,20 +51,17 @@ const TagsInput = ({inpt}) => {
         ))
     }
 
-    const handleChange = e => {
-        setSingleTag(e.target.value);
-    }
+    // const handleChangeTag = e => {
+    //     setSingleTag(e.target.value);
+    // }
 
     const focusInput = () => {
         inpt.current.focus();
     }
 
     const onKeyDown = e => {
-        if (e.keyCode === 8 && inpt.current.value === "") setTagsList(tagsList.splice(0, tagsList.length - 1));
-        if (e.keyCode === 13 && singleTag.length >= 3) {
-            tagsList.push(`#${singleTag}`);
-            setSingleTag("");
-        }
+        if (e.keyCode === 8 && inpt.current.value === "") handleDeleteTag();
+        if (e.keyCode === 13 && singleTag.length >= 3) handleAddNewTag();
     }
 
     return(
@@ -68,7 +69,7 @@ const TagsInput = ({inpt}) => {
             {renderTags(tagsList)}
             <Input
                 type="text"
-                onChange={handleChange}
+                onChange={handleChangeTag}
                 value={singleTag}
                 ref={inpt}
                 onKeyDown={onKeyDown}

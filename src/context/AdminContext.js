@@ -8,9 +8,25 @@ const AdminProvider = props => {
     const [ password, setPassword ] = useState("");
     const [ isAdminLogged, setIsAdminLogged] = useState(true);
 
+
     const [ addVisible, setAddVisible ] = useState(true);
     const [ previewVisible, setPreviewVisible ] = useState(true);
     // const [ addVisible, setAddVisible ] = useState(false);
+
+    const [tagsList, setTagsList ] = useState([]);
+    const [singleTag, setSingleTag] = useState("");
+
+    const handleAddNewTag = () => {
+        tagsList.push(`#${singleTag}`);
+        setSingleTag("");
+    }
+    const handleDeleteTag = () => {
+        setTagsList(tagsList.splice(0, tagsList.length - 1))
+    }
+
+    const handleChangeTag = e => {
+        setSingleTag(e.target.value);
+    }
 
     const handleLoginInput = e => {
         setLogin(e.target.value);
@@ -64,11 +80,16 @@ const AdminProvider = props => {
         login,
         addVisible,
         previewVisible,
+        tagsList,
+        singleTag,
         handleLogin,
         handleLogout,
         handleLoginInput,
         handlePasswordInput,
         handleAddVisible,
+        handleChangeTag,
+        handleAddNewTag,
+        handleDeleteTag
     }
 
     return(

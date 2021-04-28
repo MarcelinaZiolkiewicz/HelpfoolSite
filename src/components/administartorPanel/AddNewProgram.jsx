@@ -7,11 +7,13 @@ import styled from "styled-components";
 import TagsInput from "./TagsInput";
 import Preview from "./Preview";
 
-import {defaultCategory, defaultObject, sendData} from "./services";
+import {defaultCategory, defaultObject, sendData, sendImage} from "./services";
 import {AdminContext} from "../../context/AdminContext";
 import {AppContext} from "../../context/AppContext";
 import { validURL } from "./validation";
 
+//Ostatnia litera nie jest przekazywana zx frontu na backend bo się nie aktualizuje na czas
+//console.log('/\')
 
 const Wrapper = styled.div`
   margin-top: 20px;
@@ -157,15 +159,19 @@ const SendMsg = styled.p`
 
 const AddNewProgram = () => {
 
-    const { addVisible } = useContext(AdminContext);
+    const { addVisible, tagsList } = useContext(AdminContext);
     const { globalLanguage } = useContext(AppContext);
 
     const [sentMsg, setSentMsg] = useState("");
     const [error, setError] = useState("");
 
-    const [newItem, setNewItem] = useState(defaultObject);
+    const [newItem, setNewItem] = useState({
+        ...defaultObject,
+        tags: tagsList
+    });
 
     const [category, setCategory] = useState(defaultCategory);
+    const [logoFile, setLogoFile] = useState(undefined);
 
     const inpt = useRef(null);
 
@@ -173,39 +179,40 @@ const AddNewProgram = () => {
 
     const [selectedOption, setSelectedOption] = useState({
         value: "",
-        valuePL: ""
+        valuePL: "",
+        id: ""
     });
 
     const options = [
-        { value: 'UI Graphics', label: `${Select.uiGraphics}`, valuePL: 'Grafika UI'},
-        { value: 'fonts', label: `${Select.fonts}`, valuePL: 'Czcionki'},
-        { value: 'Colors', label: `${Select.colors}`, valuePL: 'Kolory'},
-        { value: 'Icons', label: `${Select.icons}`, valuePL: 'Ikony'},
-        { value: 'Logos', label: `${Select.logos}`, valuePL: 'Loga'},
-        { value: 'Favicons', label: `${Select.favicons}`, valuePL: 'Favikony'},
-        { value: 'Icon Fonts', label: `${Select.iconFonts}`, valuePL: 'Czcionki ikonowe'},
-        { value: 'Stock Photos', label: `${Select.stockPhotos}`, valuePL: 'Zdjęcia'},
-        { value: 'Stock Videos', label: `${Select.stockVideos}`, valuePL: 'Filmy'},
-        { value: 'Stock Music & Sound Effects', label: `${Select.music}`, valuePL: 'Muzyka i efekty dźwiękowe'},
-        { value: 'Vectors & Clipart', label: `${Select.vectors}`, valuePL: 'Wektory i kliparty'},
-        { value: 'HTML & CSS Templates', label: `${Select.webTemplates}`, valuePL: 'Szablony HTML i CSS'},
-        { value: 'CSS Frameworks', label: `${Select.cssFrameworks}`, valuePL: 'Frameworki CSS'},
-        { value: 'CSS Methodologies', label: `${Select.cssMethodologies}`, valuePL: 'Metodologie CSS'},
-        { value: 'CSS Animations', label: `${Select.cssAnimations}`, valuePL: 'Animacje CSS'},
-        { value: 'Javascript Animations', label: `${Select.jsAnimations}`, valuePL: 'Animacje JavaScript'},
-        { value: 'UI Components & Kits', label: `${Select.uiComponents}`, valuePL: 'Komponenty UI'},
-        { value: 'React UI Libraries', label: `${Select.reactUiLibs}`, valuePL: 'Biblioteki UI React'},
-        { value: 'Vue UI Libraries', label: `${Select.vueUiLibs}`, valuePL: 'Biblioteki UI Vue'},
-        { value: 'Angular UI Libraries', label: `${Select.angularUiLibs}`, valuePL: 'Biblioteki UI Angular'},
-        { value: 'Svelte UI Libraries', label: `${Select.svelteUiLibs}`, valuePL: 'Biblioteki UI Svelte'},
-        { value: 'React Native UI Libraries', label: `${Select.reactNativeUiLibs}`, valuePL: 'Biblioteki UI React Native'},
-        { value: 'Design Systems & Style Guides', label: `${Select.designSystems}`, valuePL: 'Systemy projektowania'},
-        { value: 'Online Design Tools', label: `${Select.designTools}`, valuePL: 'Narzędzia do projektowania online'},
-        { value: 'Downloadable Design Software', label: `${Select.downloadDesignTools}`, valuePL: 'Pobieralne narzędzia do projektowania'},
-        { value: 'Design Inspiration', label: `${Select.designInspirations}`, valuePL: 'Inspiracje projektowe'},
-        { value: 'Image Compression', label: `${Select.imgCompression}`, valuePL: 'Kompresja obrazów'},
-        { value: 'Chrome Extensions', label: `${Select.chromeExtensions}`, valuePL: 'Rozszerzenia do chrome'},
-        { value: 'Others', label: `${Select.others}`, valuePL: 'Inne'},
+        { id: 'uiGraphics', value: 'UI Graphics', label: `${Select.uiGraphics}`, valuePL: 'Grafika UI'},
+        { id: 'fonts', value: 'Fonts', label: `${Select.fonts}`, valuePL: 'Czcionki'},
+        { id: 'colors', value: 'Colors', label: `${Select.colors}`, valuePL: 'Kolory'},
+        { id: 'icons', value: 'Icons', label: `${Select.icons}`, valuePL: 'Ikony'},
+        { id: 'logos', value: 'Logos', label: `${Select.logos}`, valuePL: 'Loga'},
+        { id: 'favicons', value: 'Favicons', label: `${Select.favicons}`, valuePL: 'Favikony'},
+        { id: 'iconFonts', value: 'Icon Fonts', label: `${Select.iconFonts}`, valuePL: 'Czcionki ikonowe'},
+        { id: 'stockPhotos', value: 'Stock Photos', label: `${Select.stockPhotos}`, valuePL: 'Zdjęcia'},
+        { id: 'stockVideos', value: 'Stock Videos', label: `${Select.stockVideos}`, valuePL: 'Filmy'},
+        { id: 'stockMusic', value: 'Stock Music & Sound Effects', label: `${Select.music}`, valuePL: 'Muzyka i efekty dźwiękowe'},
+        { id: 'vectors', value: 'Vectors & Clipart', label: `${Select.vectors}`, valuePL: 'Wektory i kliparty'},
+        { id: 'htmlCssTemp', value: 'HTML & CSS Templates', label: `${Select.webTemplates}`, valuePL: 'Szablony HTML i CSS'},
+        { id: 'cssFramew', value: 'CSS Frameworks', label: `${Select.cssFrameworks}`, valuePL: 'Frameworki CSS'},
+        { id: 'cssMetho', value: 'CSS Methodologies', label: `${Select.cssMethodologies}`, valuePL: 'Metodologie CSS'},
+        { id: 'cssAnim', value: 'CSS Animations', label: `${Select.cssAnimations}`, valuePL: 'Animacje CSS'},
+        { id: 'jsAnim', value: 'Javascript Animations', label: `${Select.jsAnimations}`, valuePL: 'Animacje JavaScript'},
+        { id: 'uiComp', value: 'UI Components & Kits', label: `${Select.uiComponents}`, valuePL: 'Komponenty UI'},
+        { id: 'reactUiLib', value: 'React UI Libraries', label: `${Select.reactUiLibs}`, valuePL: 'Biblioteki UI React'},
+        { id: 'vueUiLib', value: 'Vue UI Libraries', label: `${Select.vueUiLibs}`, valuePL: 'Biblioteki UI Vue'},
+        { id: 'angUiLib', value: 'Angular UI Libraries', label: `${Select.angularUiLibs}`, valuePL: 'Biblioteki UI Angular'},
+        { id: 'sveUiLib', value: 'Svelte UI Libraries', label: `${Select.svelteUiLibs}`, valuePL: 'Biblioteki UI Svelte'},
+        { id: 'reaNatUiLib', value: 'React Native UI Libraries', label: `${Select.reactNativeUiLibs}`, valuePL: 'Biblioteki UI React Native'},
+        { id: 'designSys', value: 'Design Systems & Style Guides', label: `${Select.designSystems}`, valuePL: 'Systemy projektowania'},
+        { id: 'onlDes', value: 'Online Design Tools', label: `${Select.designTools}`, valuePL: 'Narzędzia do projektowania online'},
+        { id: 'downlDes', value: 'Downloadable Design Software', label: `${Select.downloadDesignTools}`, valuePL: 'Pobieralne narzędzia do projektowania'},
+        { id: 'desInspi', value: 'Design Inspiration', label: `${Select.designInspirations}`, valuePL: 'Inspiracje projektowe'},
+        { id: 'imgComp', value: 'Image Compression', label: `${Select.imgCompression}`, valuePL: 'Kompresja obrazów'},
+        { id: 'chromeExt', value: 'Chrome Extensions', label: `${Select.chromeExtensions}`, valuePL: 'Rozszerzenia do chrome'},
+        { id: 'others', value: 'Others', label: `${Select.others}`, valuePL: 'Inne'},
     ]
 
     const clearObj = () => {
@@ -221,16 +228,22 @@ const AddNewProgram = () => {
         categoryToAdd(selectedOption);
     }
 
+    const handleSetImg = e => {
+        console.log(e.target.files[0]);
+        setLogoFile(e.target.files[0]);
+    }
+
     const categoryToAdd = selected => {
         setSelectedOption({
                 value: selected.value,
-                valuePL: selected.valuePL
+                valuePL: selected.valuePL,
+                id: selected.id
             }
         );
         setCategory({
             typeENG: selected.value,
             typePL: selected.valuePL,
-            id: uuidv4(),
+            id: selected.id,
             tools: [
                 newItem
             ]
@@ -269,7 +282,8 @@ const AddNewProgram = () => {
             if (validate()){
                 setSentMsg(globalLanguage.Admin.toolSent);
                 sendData(category);
-                clearObj();
+                sendImage(logoFile);
+                // clearObj();
 
                 window.setTimeout(() => {
                     setSentMsg("");
@@ -278,12 +292,7 @@ const AddNewProgram = () => {
             } else {
                 // setSentMsg("Nie udało się wysłać");
             }
-
-
         }
-
-
-
     }
 
     return(
@@ -318,7 +327,7 @@ const AddNewProgram = () => {
                   />
 
                   <Description>Logo</Description>
-                  <Input type="file" />
+                  <Input type="file" onChange={handleSetImg} />
 
                   <Description>{globalLanguage.Admin.price}</Description>
                   <Checkbox

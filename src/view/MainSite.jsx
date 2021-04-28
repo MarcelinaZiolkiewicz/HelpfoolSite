@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import styled from 'styled-components';
 
 import {toolsList} from "../toolsList";
@@ -28,11 +28,14 @@ const MainSite = () => {
 
     const { messageVisibility, globalLanguage } = useContext(AppContext);
 
-    const [myData, setMyData] = useState({toolsList: []});
+    const [myData, setMyData] = useState({tools: []});
     const [errorMessage, setErrorMessage] = useState("");
 
-    const getData = () => {
-        fetch('http://www.helpfool.pl/dataTest/data.json')
+    // const URL = 'http://www.helpfool.pl/dataTest/data.json';
+    const URL = 'http://localhost:5000/getTools';
+
+    const getData = async () => {
+        fetch(URL)
             .then(response => {
                 if(!response.ok) throw Error(response.statusText);
                 return response.json();
@@ -47,7 +50,7 @@ const MainSite = () => {
             })
     }
 
-    const renderCategories = myData.toolsList.map( item => (
+    const renderCategories = myData.tools.map( item => (
        <Category item={item} />
     ));
 
@@ -55,8 +58,9 @@ const MainSite = () => {
        <Category item={item} />
     ));
 
-
-
+    useEffect(() => {
+        getData()
+    }, [])
 
     return(
         <Wrapper>
