@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 import {AdminContext} from "../../context/AdminContext";
 
@@ -39,21 +39,13 @@ const Input = styled.input`
 
 const TagsInput = ({inpt}) => {
 
-
     const {tagsList, singleTag, handleChangeTag, handleDeleteTag, handleAddNewTag} = useContext(AdminContext);
-
-    // const [tagsList, setTagsList ] = useState([]);
-    // const [singleTag, setSingleTag] = useState("");
 
     const renderTags = tags => {
         return tags.map(item => (
             <Tag key={item}>{item}</Tag>
         ))
     }
-
-    // const handleChangeTag = e => {
-    //     setSingleTag(e.target.value);
-    // }
 
     const focusInput = () => {
         inpt.current.focus();

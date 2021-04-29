@@ -43,7 +43,7 @@ export const sendImage = img => {
 export const defaultObject = {
     name: "",
     link: "",
-    logo: "",
+    img: null,
     price: true,
     descriptionPL: "",
     descriptionENG: "",

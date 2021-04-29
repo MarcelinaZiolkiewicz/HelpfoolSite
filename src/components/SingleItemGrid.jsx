@@ -34,7 +34,7 @@ const ListItem = styled.div`
 `
 
 const Logo = styled.div`
-  background-image: url("${props => props.path}");
+  background-image: url("${props => props.test ? props.path : props.testPath}");
   background-size: contain;
   background-repeat: no-repeat;
   margin-left: 10px;
@@ -164,7 +164,7 @@ const CenterImg = styled.div`
 `
 
 
-const SingleItem = ({item}) => {
+const SingleItem = ({item, test}) => {
 
     const { isEnglish, globalLanguage } = useContext(AppContext);
 
@@ -198,7 +198,7 @@ const SingleItem = ({item}) => {
     return(
       <ListItem>
           <CenterImg>
-              <Logo path={window.location.origin + item.img} />
+              <Logo path={window.location.origin + item.img} testPath={item.img} test={test}/>
           </CenterImg>
           <ItemName>{item.name}</ItemName>
           <Description>{langType(item)}</Description>

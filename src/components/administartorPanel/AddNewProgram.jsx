@@ -157,6 +157,29 @@ const SendMsg = styled.p`
   margin-top: 30px;
 `
 
+const FileInpt = styled.input`
+  height: 0.1px;
+  width: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+`
+
+const Inpt = styled.div`
+  margin-top: 10px;
+  width: 240px;
+  height: 50px;
+  background-color: darkcyan;
+  text-align: center;
+  font-size: 18px;
+  line-height: 50px;
+  font-weight: bolder;
+  cursor: pointer;
+`
+
+
+
 const AddNewProgram = () => {
 
     const { addVisible, tagsList } = useContext(AdminContext);
@@ -172,8 +195,10 @@ const AddNewProgram = () => {
 
     const [category, setCategory] = useState(defaultCategory);
     const [logoFile, setLogoFile] = useState(undefined);
+    const [imgPreview, setImgPreview] = useState();
 
     const inpt = useRef(null);
+    const fileRef = useRef(null);
 
     let Select = globalLanguage.Admin.Select;
 
@@ -217,6 +242,7 @@ const AddNewProgram = () => {
 
     const clearObj = () => {
         setNewItem(defaultObject);
+        setLogoFile("");
     }
 
     const handleInput = e => {
@@ -229,8 +255,24 @@ const AddNewProgram = () => {
     }
 
     const handleSetImg = e => {
-        console.log(e.target.files[0]);
-        setLogoFile(e.target.files[0]);
+        let file = e.target.files[0]
+
+        if (imgValidation(file)){
+            setLogoFile(file);
+            console.log(URL.createObjectURL(file))
+
+            setNewItem({
+                ...newItem,
+                img: URL.createObjectURL(file)
+            });
+
+            console.log(newItem);
+
+        }else {
+            setLogoFile("");
+            setImgPreview(null);
+            console.log("Nie można przypisać tego pliku");
+        }
     }
 
     const categoryToAdd = selected => {
@@ -248,6 +290,24 @@ const AddNewProgram = () => {
                 newItem
             ]
         })
+    }
+
+    const imgValidation = img => {
+        let name = img.name;
+        name = name.toLowerCase();
+
+        let len = name.length;
+        let type = name.slice(len - 3);
+
+        console.log(name);
+
+        if (type === "png" || type === "svg") return true;
+        return false;
+    }
+
+    const handleAddFile = () => {
+        console.log("Dodaję pliczka byku");
+
     }
 
     const validate = () => {
@@ -269,6 +329,14 @@ const AddNewProgram = () => {
         }
         if (!newItem.link || !validURL(newItem.link)){
             setError(globalLanguage.Admin.errLink);
+            return false
+        }
+        if (newItem.tags.length < 6 ){
+            setError(globalLanguage.Admin.errTags);
+            return false
+        }
+        if (!logoFile){
+            setError(globalLanguage.Admin.errFile);
             return false
         }
         setError("");
@@ -297,7 +365,7 @@ const AddNewProgram = () => {
 
     return(
       <Wrapper isVisible={addVisible}>
-          <Preview item={newItem}/>
+          <Preview item={newItem} test={true}/>
 
           {error && <ErrorMsg>{error}</ErrorMsg>}
           {sentMsg && <SendMsg>{sentMsg}</SendMsg>}
@@ -327,7 +395,10 @@ const AddNewProgram = () => {
                   />
 
                   <Description>Logo</Description>
-                  <Input type="file" onChange={handleSetImg} />
+                  <Inpt onClick={handleAddFile}>
+                      {globalLanguage.Admin.chooseFile}
+                      <FileInpt type="file" onChange={handleSetImg} ref={fileRef}/>
+                  </Inpt>
 
                   <Description>{globalLanguage.Admin.price}</Description>
                   <Checkbox

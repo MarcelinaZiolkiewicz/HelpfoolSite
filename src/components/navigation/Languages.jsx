@@ -21,7 +21,8 @@ const Languages = () => {
     const { globalLanguage, handleSetLanguage } = useContext(AppContext);
 
     const topIcon = () => {
-        console.log('Actual lang: ' + globalLanguage.lang);
+        // console.log('Actual lang: ' + globalLanguage.lang);
+
         //usememo
         if (globalLanguage.lang === 'PL'){
             return <Icon langImg={language.english.iconPath} onClick={() => handleSetLanguage(2)}/>
