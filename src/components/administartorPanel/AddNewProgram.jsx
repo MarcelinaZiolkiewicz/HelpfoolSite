@@ -1,5 +1,4 @@
 import React, {useState, useContext, useRef} from "react";
-import {v4 as uuidv4} from "uuid";
 
 import Select from "react-select";
 import styled from "styled-components";
@@ -11,6 +10,8 @@ import {defaultCategory, defaultObject, sendData, sendImage} from "./services";
 import {AdminContext} from "../../context/AdminContext";
 import {AppContext} from "../../context/AppContext";
 import { validURL } from "./validation";
+
+import upload from '../../images/upload.svg';
 
 //Ostatnia litera nie jest przekazywana zx frontu na backend bo się nie aktualizuje na czas
 //console.log('/\')
@@ -166,19 +167,24 @@ const FileInpt = styled.input`
   z-index: -1;
 `
 
-const Inpt = styled.div`
+const Inpt = styled.label`
+  display: block;
   margin-top: 10px;
   width: 240px;
   height: 50px;
-  background-color: darkcyan;
+  background-color: #489FB5;
   text-align: center;
   font-size: 18px;
   line-height: 50px;
   font-weight: bolder;
   cursor: pointer;
+  transition: .3s;
+  
+  &:hover{
+    background-color: #16697A;
+    color: ghostwhite;
+  }
 `
-
-
 
 const AddNewProgram = () => {
 
@@ -195,10 +201,8 @@ const AddNewProgram = () => {
 
     const [category, setCategory] = useState(defaultCategory);
     const [logoFile, setLogoFile] = useState(undefined);
-    const [imgPreview, setImgPreview] = useState();
 
     const inpt = useRef(null);
-    const fileRef = useRef(null);
 
     let Select = globalLanguage.Admin.Select;
 
@@ -259,19 +263,21 @@ const AddNewProgram = () => {
 
         if (imgValidation(file)){
             setLogoFile(file);
-            console.log(URL.createObjectURL(file))
+            setError("");
 
             setNewItem({
                 ...newItem,
                 img: URL.createObjectURL(file)
             });
 
-            console.log(newItem);
-
         }else {
+            setError(globalLanguage.Admin.errFileType);
             setLogoFile("");
-            setImgPreview(null);
-            console.log("Nie można przypisać tego pliku");
+
+            setNewItem({
+                ...newItem,
+                img: null
+            });
         }
     }
 
@@ -293,22 +299,24 @@ const AddNewProgram = () => {
     }
 
     const imgValidation = img => {
-        let name = img.name;
-        name = name.toLowerCase();
 
-        let len = name.length;
-        let type = name.slice(len - 3);
+        if (typeof img === 'object' && img !== null){
+            let name = img.name;
+            name = name.toLowerCase();
 
-        console.log(name);
+            let len = name.length;
+            let type = name.slice(len - 3);
 
-        if (type === "png" || type === "svg") return true;
-        return false;
+            if (type === "png" || type === "svg") return true;
+            return false;
+
+        }else {
+            return false
+        }
+
+
     }
 
-    const handleAddFile = () => {
-        console.log("Dodaję pliczka byku");
-
-    }
 
     const validate = () => {
         if (!selectedOption.value){
@@ -363,6 +371,13 @@ const AddNewProgram = () => {
         }
     }
 
+    const displayFile = () => {
+        if (logoFile){
+            return logoFile.name;
+        }
+        return globalLanguage.Admin.chooseFile;
+    }
+
     return(
       <Wrapper isVisible={addVisible}>
           <Preview item={newItem} test={true}/>
@@ -395,9 +410,9 @@ const AddNewProgram = () => {
                   />
 
                   <Description>Logo</Description>
-                  <Inpt onClick={handleAddFile}>
-                      {globalLanguage.Admin.chooseFile}
-                      <FileInpt type="file" onChange={handleSetImg} ref={fileRef}/>
+                  <Inpt>
+                      {displayFile()}
+                      <FileInpt type="file" onChange={handleSetImg}/>
                   </Inpt>
 
                   <Description>{globalLanguage.Admin.price}</Description>

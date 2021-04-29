@@ -56,8 +56,6 @@ const AdminProvider = props => {
     }
 
     const handleAddVisible = option => {
-        console.log('działa' + option);
-
         switch (option) {
             case 1:
                 setAddVisible(!addVisible);

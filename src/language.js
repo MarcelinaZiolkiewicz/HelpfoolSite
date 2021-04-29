@@ -51,6 +51,7 @@ export const language = {
             errTags: "Podaj przynajmniej 6 tagów",
             errFile: "Musisz dodać plik z logo",
             toolSent: "Udało się wysłać",
+            errFileType: "Plik musi być w fromacie .svg lub .png",
             Select: {
                 uiGraphics: "UI Graphics",
                 fonts: "Czcionki",
@@ -136,6 +137,7 @@ export const language = {
             errTags: "Add at least 6 tags",
             errFile: "You need to choose logo file",
             toolSent: "Successfully sent",
+            errFileType: "The file must be a .svg or .png",
             Select: {
                 uiGraphics: "UI Graphics",
                 fonts: "Fonts",
